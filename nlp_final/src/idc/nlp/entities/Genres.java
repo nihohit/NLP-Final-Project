@@ -2,7 +2,7 @@ package idc.nlp.entities;
 
 public enum Genres {
 
-	METAL(1), ROCK(2);
+	METAL(1), ROCK(2), RAP(3), CHILL_OUT(4);
 
 	private int numVal;
 

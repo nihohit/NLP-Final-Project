@@ -10,10 +10,10 @@ public class SongCollection {
 	public final Song[] values;
 
 	public SongCollection(String filename) {
-		values = generateApps(filename);
+		values = readSongsFromFile(filename);
 	}
 
-	protected Song[] generateApps(String filename) {
+	protected Song[] readSongsFromFile(String filename) {
 		Properties properties = new Properties();
 		Song[] values = null;
 		try {
@@ -31,22 +31,6 @@ public class SongCollection {
 			e.printStackTrace();
 		}
 		return values;
-	}
-
-	public static Song getSongWithKey(String filename, String key) {
-		Properties properties = new Properties();
-		Song ins = null;
-		try {
-			properties.load(new FileInputStream(filename));
-			String [] permissions = convertAppObjectToPermissionArray(properties.getProperty(key), filename);
-			if(!(permissions == null || permissions.length == 0)){
-				ins = new Song(permissions);
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		return ins;
 	}
 
 	private static String[] convertAppObjectToPermissionArray(Object app, String filename) {
