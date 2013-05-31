@@ -1,7 +1,7 @@
 package idc.nlp.models;
 
-import idc.nlp.entity.MetalSongCollection;
-import idc.nlp.entity.RockSongCollection;
+import idc.nlp.entities.MetalSongCollection;
+import idc.nlp.entities.RockSongCollection;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import de.bwaldvogel.liblinear.Parameter;
 import de.bwaldvogel.liblinear.Problem;
 import de.bwaldvogel.liblinear.SolverType;
 
-public class SecurityModel {
+public class SongClassifierModel {
 
 	final SolverType solver = SolverType.L2R_LR; // -s 0
 	final double C; // cost of constraints violation
@@ -21,14 +21,14 @@ public class SecurityModel {
 	Model model;
 	private Problem problem;
 
-	public SecurityModel(double constraints) {
+	public SongClassifierModel(double constraints) {
 		C = constraints;
 		prepareData();
 		this.model = Linear.train(problem, new Parameter(solver, C, eps));
 	}
 
 	private void prepareData() {
-		this.problem = new SecurityModelHelper().createProblem(new MetalSongCollection(), new RockSongCollection());
+		this.problem = new ModelHelper().createProblem(new MetalSongCollection(), new RockSongCollection());
 	}
 
 	public PredictionResultModel predict(FeatureNode[] instanceToTest) {

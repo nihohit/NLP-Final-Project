@@ -1,4 +1,4 @@
-package idc.nlp.entity;
+package idc.nlp.entities;
 
 public class MetalSongCollection extends SongCollection {
 	

@@ -1,13 +1,13 @@
 package idc.nlp.models;
 
 
-import idc.nlp.entity.LyricsData;
-import idc.nlp.entity.Song;
-import idc.nlp.entity.SongCollection;
+import idc.nlp.entities.LyricsData;
+import idc.nlp.entities.Song;
+import idc.nlp.entities.SongCollection;
 import de.bwaldvogel.liblinear.FeatureNode;
 import de.bwaldvogel.liblinear.Problem;
 
-public class SecurityModelHelper {
+public class ModelHelper {
 
 	/**
 	 * This function creates a <code>Problem</code> object with the given

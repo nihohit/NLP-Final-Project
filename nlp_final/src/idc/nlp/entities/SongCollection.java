@@ -1,4 +1,4 @@
-package idc.nlp.entity;
+package idc.nlp.entities;
 
 import java.io.FileInputStream;
 import java.io.IOException;
