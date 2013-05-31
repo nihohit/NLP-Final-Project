@@ -1,20 +1,21 @@
 package idc.nlp.entities;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import de.bwaldvogel.liblinear.FeatureNode;
 
 public class Song {
 
-	protected String[] lyrics;
+	protected Set<String> lyrics;
 	protected FeatureNode[] featureNodes;
 
-	public Song(String[] lyrics) {
+	public Song(Set<String> lyrics) {
 		this.lyrics = lyrics;
 		this.featureNodes = convertToFeatureNodes();
 	}
 
-	public String[] getLyrics() {
+	public Set<String> getLyrics() {
 		return lyrics;
 	}
 
@@ -23,14 +24,17 @@ public class Song {
 	}
 
 	public FeatureNode[] convertToFeatureNodes() {
-		int[] tempArr = new int[lyrics.length];
-		for (int i = 0; i < tempArr.length; i++) {
-			tempArr[i] = LyricsData.get(lyrics[i]);
+		int[] tempArr = new int[lyrics.size()];
+		int i = 0;
+
+		for (String word : lyrics) {
+			tempArr[i] = LyricsData.get(word);
+			i++;
 		}
 
 		Arrays.sort(tempArr);
 		FeatureNode[] featureNodes = new FeatureNode[tempArr.length];
-		for (int i = 0; i < featureNodes.length; i++) {
+		for (i = 0; i < featureNodes.length; i++) {
 			featureNodes[i] = new FeatureNode(tempArr[i], 1);
 		}
 		return featureNodes;
@@ -38,7 +42,7 @@ public class Song {
 
 	@Override
 	public String toString() {
-		return Arrays.toString(this.getLyrics());
+		return this.getLyrics().toString();
 	}
 
 }

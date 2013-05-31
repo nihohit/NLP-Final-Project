@@ -6,8 +6,10 @@ import idc.nlp.utils.FileUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
@@ -26,14 +28,14 @@ public class Parser {
 	 * # AUTHOR - SONG NAME<br>
 	 * W1 W2 W3...<br>
 	 * W...<br>
-	 * </code>
-	 * In addition, it will map each seen word to the <code>LyricsData</code> object to assign a unique ID to each word.
+	 * </code> In addition, it will map each seen word to the
+	 * <code>LyricsData</code> object to assign a unique ID to each word.
 	 * @param filename - the file to parse
 	 * @return a <code>List</code> of <code>Song</code> instances
 	 */
 	public static List<Song> parseSongsFile(String filename) {
 		List<Song> songs = new LinkedList<Song>();
-		List<String> songLyrics = new LinkedList<String>();
+		Set<String> songLyrics = new HashSet<String>();
 		BufferedReader reader = FileUtil.getReader(filename);
 		String line;
 		int lineCounter = 0;
@@ -41,26 +43,28 @@ public class Parser {
 			while ((line = reader.readLine()) != null) {
 				lineCounter++;
 				if (line.isEmpty()) {
-					
+
 					// this means end of the current song
-					songs.add(new Song(songLyrics.toArray(new String[0])));
+					songs.add(new Song(songLyrics));
 					songLyrics = null;
-					songLyrics = new LinkedList<String>();
+					songLyrics = new HashSet<String>();
 				}
-				else {
+				else if (line.charAt(0) != '#') {
 					StringTokenizer tokenizer = new StringTokenizer(line);
 					while (tokenizer.hasMoreTokens()) {
 						String word = tokenizer.nextToken();
-						songLyrics.add(word);
-						LyricsData.add(word);
+						word = word.toLowerCase();
+						if (songLyrics.add(word)) {
+							LyricsData.add(word);
+						}
 					}
 				}
 			}
 			reader.close();
-			
+
 			//one last song
-			if(songLyrics.size()>0){
-				songs.add(new Song(songLyrics.toArray(new String[0])));
+			if (songLyrics.size() > 0) {
+				songs.add(new Song(songLyrics));
 			}
 		}
 		catch (IOException e) {
@@ -68,7 +72,6 @@ public class Parser {
 		}
 		return songs;
 	}
-	
 
 	/**
 	 * handle the errors by any kind.

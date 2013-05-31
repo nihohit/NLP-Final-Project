@@ -86,14 +86,14 @@ public class ModelHelper {
 		FeatureNode[][] temp = new FeatureNode[metalSongs.length + rockSongs.length][];
 		int row = 0;
 		for (int i = 0; i < metalSongs.length; i++, row++) {
-			Song app = metalSongs[i];
-			for (int col = 0; col < app.getLyrics().length; col++) {
-				temp[row] = app.getFeatureNodes();
+			Song song = metalSongs[i];
+			for (int col = 0; col < song.getLyrics().size(); col++) {
+				temp[row] = song.getFeatureNodes();
 			}
 		}
 		for (int i = 0; i < rockSongs.length; i++, row++) {
 			Song app = rockSongs[i];
-			for (int col = 0; col < app.getLyrics().length; col++) {
+			for (int col = 0; col < app.getLyrics().size(); col++) {
 				temp[row] = app.getFeatureNodes();
 			}
 		}
