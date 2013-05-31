@@ -25,7 +25,7 @@ public class Song {
 	public FeatureNode[] convertToFeatureNodes() {
 		int[] tempArr = new int[lyrics.length];
 		for (int i = 0; i < tempArr.length; i++) {
-			tempArr[i] = LyricsData.MAP.get(lyrics[i]);
+			tempArr[i] = LyricsData.get(lyrics[i]);
 		}
 
 		Arrays.sort(tempArr);

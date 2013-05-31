@@ -20,6 +20,13 @@ public class LyricsData {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.util.Map#get()
+	 */
+	public static Integer get(Object key) {
+		return MAP.get(key);
+	}
+	
 	/**
 	 * returns the current size of the map.
 	 * @return the map size
@@ -27,5 +34,5 @@ public class LyricsData {
 	public static int size() {
 		return counter;
 	}
-	
+
 }
