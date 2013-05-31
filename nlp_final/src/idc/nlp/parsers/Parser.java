@@ -2,14 +2,13 @@ package idc.nlp.parsers;
 
 import idc.nlp.entities.LyricsData;
 import idc.nlp.entities.Song;
+import idc.nlp.utils.CountMap;
 import idc.nlp.utils.FileUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
@@ -35,7 +34,7 @@ public class Parser {
 	 */
 	public static List<Song> parseSongsFile(String filename) {
 		List<Song> songs = new LinkedList<Song>();
-		Set<String> songLyrics = new HashSet<String>();
+		CountMap<String> songLyrics = new CountMap<String>();
 		BufferedReader reader = FileUtil.getReader(filename);
 		String line;
 		int lineCounter = 0;
@@ -47,16 +46,15 @@ public class Parser {
 					// this means end of the current song
 					songs.add(new Song(songLyrics));
 					songLyrics = null;
-					songLyrics = new HashSet<String>();
+					songLyrics = new CountMap<String>();
 				}
 				else if (line.charAt(0) != '#') {
 					StringTokenizer tokenizer = new StringTokenizer(line);
 					while (tokenizer.hasMoreTokens()) {
 						String word = tokenizer.nextToken();
 						word = word.toLowerCase();
-						if (songLyrics.add(word)) {
-							LyricsData.add(word);
-						}
+						songLyrics.increment(word);
+						LyricsData.add(word);
 					}
 				}
 			}

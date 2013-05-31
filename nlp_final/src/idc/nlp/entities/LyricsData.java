@@ -7,24 +7,27 @@ public class LyricsData {
 
 	private static int counter = 1;
 	
-	public static Map<String, Integer> MAP = new HashMap<String, Integer>();
+	private static Map<String, Integer> WORD_TO_INT = new HashMap<String, Integer>();
+	private static Map<Integer, String> INT_TO_WORD = new HashMap<Integer, String>();
 	
 	/**
 	 * adds the given word into the map, if not exists, and assigns an ID to it.
 	 * @param word - the word to add
 	 */
 	public static void add(String word) {
-		if(!MAP.containsKey(word)){
-			MAP.put(word, counter);
+		if(!WORD_TO_INT.containsKey(word)){
+			WORD_TO_INT.put(word, counter);
+			INT_TO_WORD.put(counter, word);
 			counter++;
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.util.Map#get()
-	 */
-	public static Integer get(Object key) {
-		return MAP.get(key);
+	public static Integer getId(String word) {
+		return WORD_TO_INT.get(word);
+	}
+	
+	public static String getWord(int i) {
+		return INT_TO_WORD.get(i);
 	}
 	
 	/**

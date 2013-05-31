@@ -24,7 +24,7 @@ public class ModelHelper {
 		p.l = metalSongs.values.length + rockSongs.values.length;
 		
 		//the number of total features in input
-		p.n = LyricsData.MAP.size();
+		p.n = LyricsData.size();
 		
 		//the feature nodes of the training set
 		p.x = convertTrainingSetToFeatureNodes(metalSongs.values, rockSongs.values);
