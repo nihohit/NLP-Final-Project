@@ -1,7 +1,7 @@
 package idc.nlp.models;
 
 import idc.nlp.entities.MetalSongCollection;
-import idc.nlp.entities.RockSongCollection;
+import idc.nlp.entities.PopSongCollection;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class SongClassifierModel {
 	}
 
 	private void prepareData() {
-		this.problem = new ModelHelper().createProblem(new MetalSongCollection(), new RockSongCollection());
+		this.problem = new ModelHelper().createProblem(new MetalSongCollection(), new PopSongCollection());
 	}
 
 	public PredictionResultModel predict(FeatureNode[] instanceToTest) {

@@ -2,7 +2,7 @@ package idc.nlp.entities;
 
 public enum Genres {
 
-	METAL(1), ROCK(2), RAP(3), CHILL_OUT(4);
+	METAL(1), POP(2), RAP(3);
 
 	private int numVal;
 
@@ -10,7 +10,14 @@ public enum Genres {
 		this.numVal = numVal;
 	}
 
-	public int getNumVal() {
+	public int getInt() {
 		return numVal;
+	}
+
+	public Genres fromInt(int i) {
+		for (Genres genre : Genres.values()) {
+			if (genre.getInt() == i) { return genre; }
+		}
+		return null;
 	}
 }
