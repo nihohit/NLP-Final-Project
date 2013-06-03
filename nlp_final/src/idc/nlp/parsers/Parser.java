@@ -53,8 +53,10 @@ public class Parser {
 					while (tokenizer.hasMoreTokens()) {
 						String word = tokenizer.nextToken();
 						word = word.toLowerCase();
-						songLyrics.increment(word);
-						LyricsData.add(word);
+						if (wordIsValid(word)) {
+							songLyrics.increment(word);
+							LyricsData.add(word);
+						}
 					}
 				}
 			}
@@ -69,6 +71,10 @@ public class Parser {
 			handleError(e, lineCounter);
 		}
 		return songs;
+	}
+
+	private static boolean wordIsValid(String word) {
+		return true;
 	}
 
 	/**
