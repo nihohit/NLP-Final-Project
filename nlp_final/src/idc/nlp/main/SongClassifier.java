@@ -10,7 +10,7 @@ public class SongClassifier {
 		long startTime = System.currentTimeMillis();
 		SongClassifierModel model = new SongClassifierModel(1.0);
 		SongCollection popTestFile = new SongCollection("resources/test/pop_songs.test", ParseMode.TEST);
-		System.out.println(model.predict(popTestFile.values[0].convertToFeatureNodes()));
+		System.out.println(model.predict(popTestFile.values[1].convertToFeatureNodes()));
 		long elapsedTime = System.currentTimeMillis() - startTime;
 		System.out.println("Program duration: " + (elapsedTime / 1000) + " seconds");
 	}

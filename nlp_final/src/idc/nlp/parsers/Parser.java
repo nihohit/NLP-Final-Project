@@ -7,14 +7,35 @@ import idc.nlp.utils.FileUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
  * this class represents a parser object to read songs from a file.
  */
 public class Parser {
+
+	private static Set<String> ignoredSet;
+
+	static {
+		ignoredSet = new HashSet<String>();
+		BufferedReader reader = FileUtil.getReader("resources/misc/ignore.dat");
+		String line;
+		try {
+			while ((line = reader.readLine()) != null) {
+				StringTokenizer tokenizer = new StringTokenizer(line, ",");
+				while (tokenizer.hasMoreTokens()) {
+					ignoredSet.add(tokenizer.nextToken());
+				}
+			}
+		}
+		catch (IOException e) {
+			handleError(e, 0);
+		}
+	}
 
 	/**
 	 * parses a file in the following form:<br>
@@ -54,7 +75,7 @@ public class Parser {
 					while (tokenizer.hasMoreTokens()) {
 						String word = tokenizer.nextToken();
 						word = word.toLowerCase();
-						if (mode.equals(ParseMode.TRAIN) && wordIsValid(word)) {
+						if (mode.equals(ParseMode.TRAIN) && wordIsValid(word) && !ignoredSet.contains(word)) {
 							songLyrics.increment(word);
 							LyricsData.add(word);
 						}
