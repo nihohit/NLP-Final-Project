@@ -29,10 +29,11 @@ public class Parser {
 	 * W...<br>
 	 * </code> In addition, it will map each seen word to the
 	 * <code>LyricsData</code> object to assign a unique ID to each word.
-	 * @param filename - the file to parse
+	 * @param filename - the file to parse.
+	 * @param mode - parsing mode.
 	 * @return a <code>List</code> of <code>Song</code> instances
 	 */
-	public static List<Song> parseSongsFile(String filename) {
+	public static List<Song> parseSongsFile(String filename, ParseMode mode) {
 		List<Song> songs = new LinkedList<Song>();
 		CountMap<String> songLyrics = new CountMap<String>();
 		BufferedReader reader = FileUtil.getReader(filename);
@@ -53,9 +54,12 @@ public class Parser {
 					while (tokenizer.hasMoreTokens()) {
 						String word = tokenizer.nextToken();
 						word = word.toLowerCase();
-						if (wordIsValid(word)) {
+						if (mode.equals(ParseMode.TRAIN) && wordIsValid(word)) {
 							songLyrics.increment(word);
 							LyricsData.add(word);
+						}
+						else if (mode.equals(ParseMode.TEST) && LyricsData.contains(word)) {
+							songLyrics.increment(word);
 						}
 					}
 				}

@@ -30,6 +30,14 @@ public class LyricsData {
 		return INT_TO_WORD.get(i);
 	}
 	
+	public static boolean contains(String word) {
+		return WORD_TO_INT.containsKey(word);
+	}
+	
+	public static boolean contains(int i) {
+		return INT_TO_WORD.containsKey(i);
+	}
+	
 	/**
 	 * returns the current size of the map.
 	 * @return the map size

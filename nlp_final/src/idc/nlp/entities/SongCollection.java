@@ -1,5 +1,6 @@
 package idc.nlp.entities;
 
+import idc.nlp.parsers.ParseMode;
 import idc.nlp.parsers.Parser;
 
 public class SongCollection {
@@ -29,11 +30,11 @@ public class SongCollection {
 			default:
 				break;
 		}
-		values = Parser.parseSongsFile(filename).toArray(new Song[0]);
+		values = Parser.parseSongsFile(filename, ParseMode.TRAIN).toArray(new Song[0]);
 	}
 	
-	public SongCollection(String filename) {
-		values = Parser.parseSongsFile(filename).toArray(new Song[0]);
+	public SongCollection(String filename, ParseMode mode) {
+		values = Parser.parseSongsFile(filename, mode).toArray(new Song[0]);
 	}
 
 	public Genre getGenre() {
