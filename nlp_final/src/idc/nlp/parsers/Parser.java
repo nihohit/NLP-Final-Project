@@ -7,17 +7,19 @@ import idc.nlp.utils.FileUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
- * this class represents a parser object to read songs from a file.
+ * A singleton object which represents a parser object to read songs from a file.
  */
-public class Parser {
+public enum Parser {
 
+	PARSER;
+	
 	private static Set<String> ignoredSet;
 
 	static {
@@ -33,7 +35,7 @@ public class Parser {
 			}
 		}
 		catch (IOException e) {
-			handleError(e, 0);
+			e.printStackTrace();
 		}
 	}
 
@@ -54,8 +56,8 @@ public class Parser {
 	 * @param mode - parsing mode.
 	 * @return a <code>List</code> of <code>Song</code> instances
 	 */
-	public static List<Song> parseSongsFile(String filename, ParseMode mode) {
-		List<Song> songs = new LinkedList<Song>();
+	public List<Song> parseSongsFile(String filename, ParseMode mode) {
+		List<Song> songs = new ArrayList<Song>();
 		CountMap<String> songLyrics = new CountMap<String>();
 		BufferedReader reader = FileUtil.getReader(filename);
 		String line;
@@ -75,7 +77,7 @@ public class Parser {
 					while (tokenizer.hasMoreTokens()) {
 						String word = tokenizer.nextToken();
 						word = word.toLowerCase();
-						if (mode.equals(ParseMode.TRAIN) && wordIsValid(word) && !ignoredSet.contains(word)) {
+						if (mode.equals(ParseMode.TRAIN) && wordShouldNotBeIgnored(word)) {
 							songLyrics.increment(word);
 							LyricsData.add(word);
 						}
@@ -98,8 +100,8 @@ public class Parser {
 		return songs;
 	}
 
-	private static boolean wordIsValid(String word) {
-		return true;
+	private boolean wordShouldNotBeIgnored(String word) {
+		return !ignoredSet.contains(word);
 	}
 
 	/**
@@ -107,7 +109,7 @@ public class Parser {
 	 * @param e - the error
 	 * @param lineNumber - the line number of which the error occurred.
 	 */
-	private static void handleError(Exception e, int lineNumber) {
+	private void handleError(Exception e, int lineNumber) {
 		System.out.println("line number is: " + lineNumber);
 		e.printStackTrace();
 	}
