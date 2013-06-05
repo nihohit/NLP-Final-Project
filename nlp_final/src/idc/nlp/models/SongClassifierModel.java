@@ -17,18 +17,16 @@ public class SongClassifierModel {
 
 	final SolverType solver = SolverType.L2R_LR; // -s 0
 	final double C; // cost of constraints violation
-	final double eps = 0.001; // stopping criteria
+	final double eps = 0.01; // stopping criteria
 	Model model;
-	private Problem problem;
 
 	public SongClassifierModel(double constraints) {
 		C = constraints;
-		prepareData();
-		this.model = Linear.train(problem, new Parameter(solver, C, eps));
 	}
 
-	private void prepareData() {
-		this.problem = new ModelHelper().createProblem(new SongCollection(Genre.METAL), new SongCollection(Genre.POP));
+	public void train() {
+		Problem problem = new ModelHelper().createProblem(new SongCollection(Genre.METAL), new SongCollection(Genre.POP));
+		this.model = Linear.train(problem, new Parameter(solver, C, eps));
 	}
 
 	public PredictionResultModel predict(FeatureNode[] instanceToTest) {
@@ -52,5 +50,5 @@ public class SongClassifierModel {
 		double prediction = Linear.predictProbability(model, instanceToTest, probabilityResults);
 		return new PredictionResultModel(prediction, probabilityResults);
 	}
-
+	
 }

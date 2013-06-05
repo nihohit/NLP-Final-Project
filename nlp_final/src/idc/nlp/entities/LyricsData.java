@@ -43,7 +43,7 @@ public class LyricsData {
 	 * @return the map size
 	 */
 	public static int size() {
-		return counter;
+		return counter - 1;
 	}
 
 }
