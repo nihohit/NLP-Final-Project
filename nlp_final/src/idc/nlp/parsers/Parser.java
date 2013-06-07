@@ -100,8 +100,16 @@ public enum Parser {
 		return songs;
 	}
 
+	/**
+	 * validates the word's contribution to the training set.<br>
+	 * it checks whether the word is not belongs to the ignored words list,<br>
+	 * and that the word's length is greater than 2<br>
+	 * (the assumption is that a word less than 3 is considered as noise)
+	 * @param word - to the word to check
+	 * @return true if the given word should not be ignored
+	 */
 	private boolean wordShouldNotBeIgnored(String word) {
-		return !ignoredSet.contains(word);
+		return !ignoredSet.contains(word) && word.length() > 2;
 	}
 
 	/**
