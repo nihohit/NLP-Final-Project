@@ -1,5 +1,7 @@
 package idc.nlp.models;
 
+import idc.nlp.entities.Genre;
+
 /**
  * @author zivl
  * 
@@ -40,9 +42,10 @@ public class PredictionResultModel {
 
 	@Override
 	public String toString() {
-		return "Prediction: " + prediction + "\nPrediction Confidence: "
+		return "Prediction: " + Genre.fromInt(prediction) + "\nPrediction Confidence: "
 				+ (int)(probabilityConfidense[0] * 100) + "% < -- > "
-				+ (int)(probabilityConfidense[1] * 100) + "%";
+				+ (int)(probabilityConfidense[1] * 100) + "% < -- > "
+				+ (int)(probabilityConfidense[2] * 100) + "%";
 	}
 
 }

@@ -14,7 +14,7 @@ public enum Genre {
 		return numVal;
 	}
 
-	public Genre fromInt(int i) {
+	public static Genre fromInt(int i) {
 		for (Genre genre : Genre.values()) {
 			if (genre.getInt() == i) { return genre; }
 		}

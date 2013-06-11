@@ -25,10 +25,10 @@ public class SongClassifierModel {
 	}
 
 	public void train() {
-		Problem problem = new ModelHelper().createProblem(new SongCollection(Genre.METAL), new SongCollection(Genre.POP));
+		Problem problem = new ModelHelper().createProblem(new SongCollection(Genre.METAL), new SongCollection(Genre.POP), new SongCollection(Genre.RAP));
 		this.model = Linear.train(problem, new Parameter(solver, C, eps));
 	}
-
+	
 	public PredictionResultModel predict(FeatureNode[] instanceToTest) {
 		return predict(instanceToTest, false);
 	}
@@ -46,7 +46,7 @@ public class SongClassifierModel {
 			}
 		}
 
-		double[] probabilityResults = new double[2];
+		double[] probabilityResults = new double[Genre.values().length];
 		double prediction = Linear.predictProbability(model, instanceToTest, probabilityResults);
 		return new PredictionResultModel(prediction, probabilityResults);
 	}

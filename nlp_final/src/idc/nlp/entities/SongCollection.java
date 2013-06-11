@@ -42,4 +42,8 @@ public class SongCollection {
 	public Genre getGenre() {
 		return genre;
 	}
+	
+	public int size() {
+		return songs.size();
+	}
 }
