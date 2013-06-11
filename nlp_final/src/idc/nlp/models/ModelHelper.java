@@ -110,5 +110,4 @@ public class ModelHelper {
 
 		return temp;
 	}
-
 }
