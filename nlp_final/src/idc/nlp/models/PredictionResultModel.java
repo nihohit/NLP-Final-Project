@@ -39,17 +39,17 @@ public class PredictionResultModel {
 	public void setProbabilityConfidense(double[] probabilityConfidense) {
 		this.probabilityConfidense = probabilityConfidense;
 	}
-	
-	public String getClassification() {
-		return "Genre: " + Genre.fromInt(prediction);
+
+	public Genre getGenreClassification() {
+		return Genre.fromInt(prediction);
 	}
 
 	@Override
 	public String toString() {
-		return "Prediction: " + Genre.fromInt(prediction) + "\nPrediction Confidence: "
-				+ (int)(probabilityConfidense[0] * 100) + "% < -- > "
-				+ (int)(probabilityConfidense[1] * 100) + "% < -- > "
-				+ (int)(probabilityConfidense[2] * 100) + "%";
+		return "Prediction: " + getGenreClassification() + "\nPrediction Confidence: " + Genre.fromInt(1) + ": "
+				+ (int) (probabilityConfidense[0] * 100) + "%, " + Genre.fromInt(2) + ": "
+				+ (int) (probabilityConfidense[1] * 100) + "%, " + Genre.fromInt(3) + ": "
+				+ (int) (probabilityConfidense[2] * 100) + "%";
 	}
 
 }
