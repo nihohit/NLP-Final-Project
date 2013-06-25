@@ -24,7 +24,7 @@ public enum Parser {
 
 	static {
 		ignoredSet = new HashSet<String>();
-		BufferedReader reader = FileUtil.getReader("resources/misc/ignore_words.dat");
+		BufferedReader reader = FileUtil.getReader("resources/data/ignore_words.dat");
 		String line;
 		try {
 			while ((line = reader.readLine()) != null) {

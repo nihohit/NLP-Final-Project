@@ -15,24 +15,31 @@ import de.bwaldvogel.liblinear.SolverType;
 
 public class SongClassifierModel {
 
-	final SolverType solver = SolverType.L2R_LR; // -s 0
-	final double C; // cost of constraints violation
-	final double eps = 0.01; // stopping criteria
+	private static final String EXPS_PATH = "resources/exps/";
+	private final SolverType solver = SolverType.L2R_LR; // -s 0
+	private final double C; // cost of constraints violation
+	private final double eps = 0.01; // stopping criteria
 	private Model model;
 
 	public SongClassifierModel(double constraints) {
 		C = constraints;
 	}
+	
+	private SongClassifierModel(Model model) {
+		C = 1.0;
+		this.model = model;
+	}
 
 	/**
 	 * train the song classifier model
 	 */
-	public void train(){
+	public void train() {
 		train(null);
 	}
-	
+
 	/**
-	 * train the song classifier model and saves the model to file to save future training.
+	 * train the song classifier model and saves the model to file to save
+	 * future training.
 	 * @param modelFilename - the model file name
 	 */
 	public void train(String modelFilename) {
@@ -41,7 +48,7 @@ public class SongClassifierModel {
 		this.model = Linear.train(problem, new Parameter(solver, C, eps));
 		if (modelFilename != null) {
 			try {
-				model.save(new File(modelFilename));
+				model.save(new File(EXPS_PATH + modelFilename));
 			}
 			catch (IOException e) {
 				e.printStackTrace();
@@ -53,13 +60,15 @@ public class SongClassifierModel {
 	 * loads the model from an existing model file
 	 * @param modelFilename - the file name of the existing model
 	 */
-	public void loadModelFromFile(String modelFilename) {
+	public static SongClassifierModel loadModelFromFile(String modelFilename) {
+		Model model = null;
 		try {
 			model = Model.load(new File(modelFilename));
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		return new SongClassifierModel(model);
 	}
 
 	/**
@@ -67,10 +76,10 @@ public class SongClassifierModel {
 	 * @param instanceToTest - the song to be classified as a feature nodes
 	 * @return a result of the prediction with probabilities.
 	 */
-	public PredictionResultModel predict(FeatureNode[] instanceToTest) {
+	public PredictionResult predict(FeatureNode[] instanceToTest) {
 		double[] probabilityResults = new double[Genre.values().length];
 		double prediction = Linear.predictProbability(model, instanceToTest, probabilityResults);
-		return new PredictionResultModel(prediction, probabilityResults);
+		return new PredictionResult(prediction, probabilityResults);
 	}
 
 }
