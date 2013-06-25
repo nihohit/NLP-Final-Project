@@ -15,7 +15,7 @@ import de.bwaldvogel.liblinear.SolverType;
 
 public class SongClassifierModel {
 
-	private static final String EXPS_PATH = "resources/exps/";
+	public static final String EXPS_PATH = "resources/exps/";
 	private final SolverType solver = SolverType.L2R_LR; // -s 0
 	private final double C; // cost of constraints violation
 	private final double eps = 0.01; // stopping criteria
