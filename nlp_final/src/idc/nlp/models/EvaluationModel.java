@@ -23,16 +23,15 @@ public class EvaluationModel {
 		this.model = model;
 		this.genre = genre;
 		this.testSongsFilePath = testSongsFilePath;
+		evaluateData();
 	}
 	
-	public List<PredictionResult> evaluateData() {
+	private void evaluateData() {
 		SongCollection testFile = new SongCollection(testSongsFilePath);
 		results = new ArrayList<PredictionResult>();
 		for (Song song : testFile.songs) {
 			results.add(model.predict(song.convertToFeatureNodes()));
 		}
-		return results;
-		
 	}
 
 	/**

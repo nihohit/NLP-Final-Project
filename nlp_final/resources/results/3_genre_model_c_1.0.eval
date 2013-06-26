@@ -1,83 +1,164 @@
 Song Classifier - Evaluation File
 =================================
-Genre:	RAP
+Evaluated Genres:	METAL	POP	RAP
 Cost of constraints violation:	1.0
-Number of songs to classify:	25
+Number of songs to classify:	75
 
-1. Prediction: POP
-Confidence: METAL: 0% POP: 54% RAP: 44% 
+	METAL	POP	RAP	Prediction
+1.	95%	1%	2%		METAL
 
-2. Prediction: POP
-Confidence: METAL: 0% POP: 99% RAP: 0% 
+2.	97%	0%	2%		METAL
 
-3. Prediction: POP
-Confidence: METAL: 29% POP: 63% RAP: 7% 
+3.	99%	0%	0%		METAL
 
-4. Prediction: POP
-Confidence: METAL: 0% POP: 77% RAP: 22% 
+4.	99%	0%	0%		METAL
 
-5. Prediction: RAP
-Confidence: METAL: 0% POP: 9% RAP: 90% 
+5.	98%	0%	0%		METAL
 
-6. Prediction: RAP
-Confidence: METAL: 18% POP: 27% RAP: 53% 
+6.	98%	1%	0%		METAL
 
-7. Prediction: METAL
-Confidence: METAL: 97% POP: 0% RAP: 2% 
+7.	98%	0%	1%		METAL
 
-8. Prediction: POP
-Confidence: METAL: 0% POP: 70% RAP: 29% 
+8.	95%	0%	4%		METAL
 
-9. Prediction: POP
-Confidence: METAL: 0% POP: 92% RAP: 7% 
+9.	55%	23%	21%		METAL
 
-10. Prediction: POP
-Confidence: METAL: 1% POP: 84% RAP: 14% 
+10.	99%	0%	0%		METAL
 
-11. Prediction: RAP
-Confidence: METAL: 0% POP: 4% RAP: 95% 
+11.	73%	3%	22%		METAL
 
-12. Prediction: RAP
-Confidence: METAL: 0% POP: 9% RAP: 90% 
+12.	85%	7%	7%		METAL
 
-13. Prediction: POP
-Confidence: METAL: 0% POP: 99% RAP: 0% 
+13.	97%	1%	0%		METAL
 
-14. Prediction: METAL
-Confidence: METAL: 54% POP: 0% RAP: 45% 
+14.	90%	3%	5%		METAL
 
-15. Prediction: RAP
-Confidence: METAL: 0% POP: 45% RAP: 54% 
+15.	97%	0%	1%		METAL
 
-16. Prediction: POP
-Confidence: METAL: 0% POP: 98% RAP: 1% 
+16.	99%	0%	0%		METAL
 
-17. Prediction: RAP
-Confidence: METAL: 0% POP: 22% RAP: 77% 
+17.	99%	0%	0%		METAL
 
-18. Prediction: RAP
-Confidence: METAL: 0% POP: 0% RAP: 99% 
+18.	97%	1%	0%		METAL
 
-19. Prediction: METAL
-Confidence: METAL: 95% POP: 0% RAP: 4% 
+19.	97%	0%	1%		METAL
 
-20. Prediction: RAP
-Confidence: METAL: 0% POP: 11% RAP: 87% 
+20.	80%	14%	5%		METAL
 
-21. Prediction: RAP
-Confidence: METAL: 0% POP: 0% RAP: 99% 
+21.	30%	38%	31%		POP
 
-22. Prediction: RAP
-Confidence: METAL: 0% POP: 0% RAP: 99% 
+22.	97%	0%	2%		METAL
 
-23. Prediction: RAP
-Confidence: METAL: 3% POP: 0% RAP: 96% 
+23.	93%	0%	5%		METAL
 
-24. Prediction: METAL
-Confidence: METAL: 61% POP: 0% RAP: 38% 
+24.	89%	2%	7%		METAL
 
-25. Prediction: METAL
-Confidence: METAL: 85% POP: 0% RAP: 14% 
+25.	84%	14%	1%		METAL
+
+26.	24%	63%	12%		POP
+
+27.	7%	86%	6%		POP
+
+28.	0%	71%	28%		POP
+
+29.	0%	78%	21%		POP
+
+30.	0%	49%	50%		RAP
+
+31.	15%	83%	0%		POP
+
+32.	92%	6%	0%		METAL
+
+33.	0%	62%	37%		POP
+
+34.	6%	1%	91%		RAP
+
+35.	6%	89%	3%		POP
+
+36.	33%	62%	3%		POP
+
+37.	40%	59%	0%		POP
+
+38.	26%	0%	72%		RAP
+
+39.	97%	2%	0%		METAL
+
+40.	7%	42%	50%		RAP
+
+41.	10%	88%	0%		POP
+
+42.	38%	30%	31%		METAL
+
+43.	1%	68%	29%		POP
+
+44.	2%	93%	3%		POP
+
+45.	74%	16%	9%		METAL
+
+46.	0%	50%	49%		POP
+
+47.	0%	49%	50%		RAP
+
+48.	0%	99%	0%		POP
+
+49.	2%	97%	0%		POP
+
+50.	95%	4%	0%		METAL
+
+51.	0%	54%	44%		POP
+
+52.	0%	99%	0%		POP
+
+53.	29%	63%	7%		POP
+
+54.	0%	77%	22%		POP
+
+55.	0%	9%	90%		RAP
+
+56.	18%	27%	53%		RAP
+
+57.	97%	0%	2%		METAL
+
+58.	0%	70%	29%		POP
+
+59.	0%	92%	7%		POP
+
+60.	1%	84%	14%		POP
+
+61.	0%	4%	95%		RAP
+
+62.	0%	9%	90%		RAP
+
+63.	0%	99%	0%		POP
+
+64.	54%	0%	45%		METAL
+
+65.	0%	45%	54%		RAP
+
+66.	0%	98%	1%		POP
+
+67.	0%	22%	77%		RAP
+
+68.	0%	0%	99%		RAP
+
+69.	95%	0%	4%		METAL
+
+70.	0%	11%	87%		RAP
+
+71.	0%	0%	99%		RAP
+
+72.	0%	0%	99%		RAP
+
+73.	3%	0%	96%		RAP
+
+74.	61%	0%	38%		METAL
+
+75.	85%	0%	14%		METAL
 
 
-predicted 11 of 25 songs
+Totals:
+================================================
+Prediction results for METAL: 24 of 25 songs	-	96.0%
+Prediction results for POP: 15 of 25 songs	-	60.0%
+Prediction results for RAP: 11 of 25 songs	-	44.0%
+Total predicted 50 of 75 songs

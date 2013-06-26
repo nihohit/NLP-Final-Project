@@ -11,6 +11,21 @@ import java.io.IOException;
  */
 public class FileUtil {
 
+	/**
+	 * write the given string to a file.
+	 * @param filename - the file name of the file to be written.
+	 * @param str - the string to be written into the file.
+	 */
+	public static void writeStringToFile(String filename, String str) {
+		BufferedWriter writer = getWriter(filename);
+		try {
+			writer.write(str);
+			writer.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * gets a file writer to write to a file

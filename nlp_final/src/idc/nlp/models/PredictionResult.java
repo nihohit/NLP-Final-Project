@@ -44,6 +44,16 @@ public class PredictionResult {
 		return Genre.fromInt(prediction);
 	}
 
+	public String printConfidenceOnly() {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0; i < probabilityConfidense.length; i++) {
+			stringBuilder
+			.append((int) (probabilityConfidense[i] * 100))
+			.append("%\t");
+		}
+		return stringBuilder.toString();
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder("Prediction: " + getGenreClassification()

@@ -1,7 +1,9 @@
 package idc.nlp.main;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import idc.nlp.entities.Genre;
 import idc.nlp.entities.SongCollection;
@@ -22,38 +24,66 @@ public class Evaluator {
 		SongClassifierModel model = new SongClassifierModel(Trainer.constrains);
 		model.train();
 		//SongClassifierModel.loadModelFromFile(modelFilename);
-		EvaluationModel evaluationModel = new EvaluationModel(Trainer.constrains, model, Genre.RAP,
-				SongCollection.RAP_TEST_FILENAME);
-		evaluationModel.evaluateData();
+		List<EvaluationModel> evaluationModel = new ArrayList<EvaluationModel>();
+		evaluationModel.add(new EvaluationModel(Trainer.constrains, model, Genre.METAL,
+				SongCollection.METAL_TEST_FILENAME));
+		evaluationModel
+				.add(new EvaluationModel(Trainer.constrains, model, Genre.POP, SongCollection.POP_TEST_FILENAME));
+		evaluationModel
+				.add(new EvaluationModel(Trainer.constrains, model, Genre.RAP, SongCollection.RAP_TEST_FILENAME));
+
 		writeResultsToFile(evaluationModel);
 		long elapsedTime = System.currentTimeMillis() - startTime;
 		System.out.println("Program duration: " + (elapsedTime / 1000) + " seconds");
 	}
 
-	private static void writeResultsToFile(EvaluationModel evaluationModel) {
-		int count = 0, i = 1;
-		BufferedWriter writer = FileUtil.getWriter("resources/results/3_genre_model_c_"
-				+ evaluationModel.getConstrains() + ".eval");
-		try {
-			writer.write("Song Classifier - Evaluation File\n");
-			writer.write("=================================\n");
-			writer.write("Genre:\t" + evaluationModel.getGenre() + "\n");
-			writer.write("Cost of constraints violation:\t" + evaluationModel.getConstrains() + "\n");
-			writer.write("Number of songs to classify:\t" + evaluationModel.getResults().size() + "\n\n");
+	private static void writeResultsToFile(List<EvaluationModel> evaluations) {
+		StringBuilder str = new StringBuilder("Song Classifier - Evaluation File\n");
+		str.append("=================================\n");
+		str.append("Evaluated Genres:");
+		int totalSongs = 0;
+		StringBuilder genresStringBuilder = new StringBuilder();
+		for (EvaluationModel evaluationModel : evaluations) {
+			genresStringBuilder.append("\t" + evaluationModel.getGenre());
+			totalSongs += evaluationModel.getResults().size();
+		}
+		str.append(genresStringBuilder.toString());
+		str.append("\nCost of constraints violation:\t" + evaluations.get(0).getConstrains() + "\n");
+		str.append("Number of songs to classify:\t" + totalSongs + "\n\n");
+		str.append(genresStringBuilder.toString());
+		str.append("\tPrediction");
+		str.append('\n');
+		int songNum = 1;
+		int[] successfulPrediction = new int[evaluations.size() + 1];
+		for (EvaluationModel evaluationModel : evaluations) {
 			for (PredictionResult result : evaluationModel.getResults()) {
 				if (result.getGenreClassification().equals(evaluationModel.getGenre())) {
-					count++;
+					successfulPrediction[evaluationModel.getGenre().getInt()]++;
 				}
-				writer.write(i++ + ". " + result.toString());
-				writer.write("\n\n");
+				str.append(songNum++ + ".\t" + result.printConfidenceOnly());
+				str.append('\t').append(result.getGenreClassification());
+				str.append("\n\n");
 			}
-			writer.write("\n");
-			writer.write("predicted " + count + " of " + evaluationModel.getResults().size() + " songs");
-			writer.close();
 		}
-		catch (IOException e) {
-			e.printStackTrace();
+		str.append("\nTotals:\n");
+		str.append("================================================\n");
+		for (EvaluationModel evaluationModel : evaluations) {
+			int p = successfulPrediction[evaluationModel.getGenre().getInt()];
+			int t = evaluationModel.getResults().size();
+			str.append("Prediction results for " + evaluationModel.getGenre() + ": " + p + " of " + t + " songs\t");
+			str.append("-\t" + (double) (1.0 * p / t)*100 + "%\n");
 		}
+		str.append("Total predicted " + arraySum(successfulPrediction) + " of " + totalSongs + " songs");
+		FileUtil.writeStringToFile("resources/results/3_genre_model_c_" + evaluations.get(0).getConstrains() + ".eval",
+				str.toString());
 
+	}
+
+	private static int arraySum(int[] arr) {
+		int sum = 0;
+		for (int i : arr) {
+			sum += i;
+		}
+		return sum;
 	}
 }
