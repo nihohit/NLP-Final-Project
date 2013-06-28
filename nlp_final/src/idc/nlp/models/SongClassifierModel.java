@@ -5,6 +5,8 @@ import idc.nlp.entities.SongCollection;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import de.bwaldvogel.liblinear.FeatureNode;
 import de.bwaldvogel.liblinear.Linear;
@@ -43,8 +45,12 @@ public class SongClassifierModel {
 	 * @param modelFilename - the model file name
 	 */
 	public void train(String modelFilename) {
-		Problem problem = new ModelHelper().createProblem(new SongCollection(Genre.METAL),
-				new SongCollection(Genre.POP), new SongCollection(Genre.RAP));
+		List<SongCollection> collections = new LinkedList<SongCollection>();
+		for(Genre genre : Genre.values())
+		{
+			collections.add(new SongCollection(genre));
+		}
+		Problem problem = new ModelHelper().createProblem(collections);
 		this.model = Linear.train(problem, new Parameter(solver, C, eps));
 		if (modelFilename != null) {
 			try {

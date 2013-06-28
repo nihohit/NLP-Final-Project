@@ -2,8 +2,8 @@ package idc.nlp.entities;
 
 public enum Genre {
 
-	METAL(1), POP(2), RAP(3);
-
+	METAL(1), POP(2), RAP(3), ROCK(4), BLUES(5);
+	
 	private int numVal;
 
 	Genre(int numVal) {

@@ -12,14 +12,14 @@ import idc.nlp.entities.SongCollection;
  */
 public class EvaluationModel {
 
-	private double constrains;
+	private double constraints;
 	private Genre genre;
 	private List<PredictionResult> results;
 	private SongClassifierModel model;
 	private String testSongsFilePath;
 	
 	public EvaluationModel(double constrains, SongClassifierModel model, Genre genre, String testSongsFilePath) {
-		this.constrains = constrains;
+		this.constraints = constrains;
 		this.model = model;
 		this.genre = genre;
 		this.testSongsFilePath = testSongsFilePath;
@@ -51,8 +51,8 @@ public class EvaluationModel {
 	/**
 	 * @return the constrains
 	 */
-	public double getConstrains() {
-		return constrains;
+	public double getConstraints() {
+		return constraints;
 	}
 	
 	

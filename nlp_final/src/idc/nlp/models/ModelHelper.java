@@ -20,21 +20,29 @@ public class ModelHelper {
 	 * @return the <code>Problem</code> object to be trained used as the
 	 * prediction model.
 	 */
-	public Problem createProblem(SongCollection metalSongs, SongCollection popSongs, SongCollection rapSongs) {
+	public Problem createProblem(List<SongCollection> collections) {
 		Problem p = new Problem();
-
+		
+		
+		int temp = 0;
+		for(SongCollection collection : collections)
+		{
+			temp += collection.size();
+		}
 		//the number of training set examples
-		p.l = metalSongs.size() + popSongs.size() + rapSongs.size();
+		p.l = temp;
+		
+		//the target songs of the known feature nodes
+		p.y = createTargetValuesArray(collections);
+				
 
 		//the number of total features in input
 		p.n = LyricsData.size();
 
 		//the feature nodes of the training set
-		p.x = convertTrainingSetToFeatureNodes(metalSongs.songs, popSongs.songs, rapSongs.songs);
-
-		//the target songs of the known feature nodes
-		p.y = createTargetValuesArray(metalSongs.size(), popSongs.size(), rapSongs.size());
+		p.x = convertTrainingSetToFeatureNodes(collections);
 		return p;
+		
 	}
 
 	/**
@@ -56,17 +64,20 @@ public class ModelHelper {
 	 * 
 	 * @return The target songs array.
 	 */
-	public double[] createTargetValuesArray(int quantityOfMetal, int quantityOfPop, int quantityOfRap) {
-		double[] arr = new double[quantityOfPop + quantityOfMetal + quantityOfRap];
+	public double[] createTargetValuesArray(List<SongCollection> collections) {
+		int sum = 0;
+		for(SongCollection collection : collections)
+		{
+			sum += collection.size();
+		}
+		double[] arr = new double[sum];
 		int i = 0;
-		for (i = 0; i < quantityOfMetal; i++) {
-			arr[i] = Genre.METAL.getInt();
-		}
-		for (int j = 0; j < quantityOfPop; j++, i++) {
-			arr[i] = Genre.POP.getInt();
-		}
-		for (int k = 0; k < quantityOfRap; k++, i++) {
-			arr[i] = Genre.RAP.getInt();
+		for(SongCollection collection : collections)
+		{
+			for(int j = 0; j < collection.size() ; j++, i++)
+			{
+				arr[i] = collection.getGenre().getInt();
+			}
 		}
 
 		// validate array cells
@@ -91,21 +102,20 @@ public class ModelHelper {
 	 * @param rapSongs a list of rap songs in a form of <code>Song</code>.
 	 * @return FeatureNode matrix X filled with the songs features.
 	 */
-	public FeatureNode[][] convertTrainingSetToFeatureNodes(List<Song> metalSongs, List<Song> popSongs,
-			List<Song> rapSongs) {
-		FeatureNode[][] temp = new FeatureNode[metalSongs.size() + popSongs.size() + rapSongs.size()][];
+	public FeatureNode[][] convertTrainingSetToFeatureNodes(List<SongCollection> collections) {
+		int sum = 0;
+		for(SongCollection collection : collections)
+		{
+			sum += collection.size();
+		}
+		FeatureNode[][] temp = new FeatureNode[sum][];
 		int row = 0;
-		for (Song song : metalSongs) {
-			temp[row] = song.getFeatureNodes();
-			row++;
-		}
-		for (Song song : popSongs) {
-			temp[row] = song.getFeatureNodes();
-			row++;
-		}
-		for (Song song : rapSongs) {
-			temp[row] = song.getFeatureNodes();
-			row++;
+		for(SongCollection collection : collections)
+		{
+			for (Song song : collection.songs) {
+				temp[row] = song.getFeatureNodes();
+				row++;
+			}
 		}
 
 		return temp;
