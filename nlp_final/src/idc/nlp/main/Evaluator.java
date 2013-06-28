@@ -14,7 +14,7 @@ import idc.nlp.utils.FileUtil;
  *
  */
 public class Evaluator {
-
+	
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
 		SongClassifierModel model = new SongClassifierModel(Trainer.constraints);
@@ -38,14 +38,17 @@ public class Evaluator {
 		int totalSongs = 0;
 		StringBuilder genresStringBuilder = new StringBuilder();
 		for (EvaluationModel evaluationModel : evaluations) {
-			genresStringBuilder.append("\t" + evaluationModel.getGenre());
+			genresStringBuilder.append(String.format("%-6s", evaluationModel.getGenre().toString().toLowerCase()));
 			totalSongs += evaluationModel.getResults().size();
 		}
 		str.append(genresStringBuilder.toString());
 		str.append("\nCost of constraints violation:\t" + evaluations.get(0).getConstraints() + "\n");
 		str.append("Number of songs to classify:\t" + totalSongs + "\n\n");
+		str.append(String.format("%-5s", "song"));
 		str.append(genresStringBuilder.toString());
-		str.append("\tPrediction");
+		str.append("Prediction  ");
+		str.append("real genre  ");
+		str.append("song name");
 		str.append('\n');
 		int songNum = 1;
 		int[] successfulPrediction = new int[evaluations.size() + 1];
@@ -54,8 +57,8 @@ public class Evaluator {
 				if (result.getGenreClassification().equals(evaluationModel.getGenre())) {
 					successfulPrediction[evaluationModel.getGenre().getInt()]++;
 				}
-				str.append(songNum++ + ".\t" + result.printConfidenceOnly());
-				str.append('\t').append(result.getGenreClassification());
+				str.append(String.format("%-5s", songNum++ + ".")  + result.printConfidenceOnly());
+				str.append(String.format("%-12s", result.getGenreClassification()));
 				str.append("\n\n");
 			}
 		}

@@ -47,9 +47,7 @@ public class PredictionResult {
 	public String printConfidenceOnly() {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i = 0; i < probabilityConfidense.length; i++) {
-			stringBuilder
-			.append((int) (probabilityConfidense[i] * 100))
-			.append("%\t");
+			stringBuilder.append(String.format("%-6s", (int) (probabilityConfidense[i] * 100) + "%"));
 		}
 		return stringBuilder.toString();
 	}

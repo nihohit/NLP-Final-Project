@@ -3,21 +3,24 @@ package idc.nlp.entities;
 import idc.nlp.utils.CountMap;
 
 import java.util.Arrays;
+import java.util.List;
 
 import de.bwaldvogel.liblinear.FeatureNode;
 
 public class Song {
 
-	protected CountMap<String> lyrics;
+	protected CountMap<String> lyricsCount;
 	protected FeatureNode[] featureNodes;
+	private List<String> lyrics;
+	public static int ADDITIONAL_FEATURES_AMOUNT = 0;
 
 	public Song(CountMap<String> lyrics) {
-		this.lyrics = lyrics;
+		this.lyricsCount = lyrics;
 		this.featureNodes = convertToFeatureNodes();
 	}
 
 	public CountMap<String> getLyrics() {
-		return lyrics;
+		return lyricsCount;
 	}
 
 	public FeatureNode[] getFeatureNodes() {
@@ -25,18 +28,24 @@ public class Song {
 	}
 
 	public FeatureNode[] convertToFeatureNodes() {
-		int[] tempArr = new int[lyrics.size()];
+		int[] tempArr = new int[lyricsCount.size()];
 		int i = 0;
-
-		for (String word : lyrics.keySet()) {
+		
+		for (String word : lyricsCount.keySet()) {
 			tempArr[i] = LyricsData.getId(word);
 			i++;
 		}
-
+		
 		Arrays.sort(tempArr);
-		FeatureNode[] featureNodes = new FeatureNode[tempArr.length];
-		for (i = 0; i < featureNodes.length; i++) {
-			featureNodes[i] = new FeatureNode(tempArr[i], lyrics.get(LyricsData.getWord(tempArr[i])));
+		FeatureNode[] featureNodes = new FeatureNode[tempArr.length + ADDITIONAL_FEATURES_AMOUNT];
+		for (i = 0; i < tempArr.length; i++) {
+			featureNodes[i] = new FeatureNode(tempArr[i], lyricsCount.get(LyricsData.getWord(tempArr[i])));
+		}
+		
+		for(FeatureNode feature : getAdditionalFeatures())
+		{
+			featureNodes[i] = feature; 
+			i++;
 		}
 		return featureNodes;
 	}
@@ -45,5 +54,11 @@ public class Song {
 	public String toString() {
 		return this.getLyrics().toString();
 	}
-
+	
+	private FeatureNode[] getAdditionalFeatures()
+	{
+		FeatureNode[] result = new FeatureNode[ADDITIONAL_FEATURES_AMOUNT];
+		
+		return result;
+	}
 }
