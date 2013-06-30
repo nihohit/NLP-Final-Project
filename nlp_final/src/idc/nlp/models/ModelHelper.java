@@ -2,7 +2,6 @@ package idc.nlp.models;
 
 import java.util.List;
 
-import idc.nlp.entities.Genre;
 import idc.nlp.entities.LyricsData;
 import idc.nlp.entities.Song;
 import idc.nlp.entities.SongCollection;
@@ -22,19 +21,15 @@ public class ModelHelper {
 	 */
 	public Problem createProblem(List<SongCollection> collections) {
 		Problem p = new Problem();
-		
-		
 		int temp = 0;
-		for(SongCollection collection : collections)
-		{
+		for (SongCollection collection : collections) {
 			temp += collection.size();
 		}
 		//the number of training set examples
 		p.l = temp;
-		
+
 		//the target songs of the known feature nodes
 		p.y = createTargetValuesArray(collections);
-				
 
 		//the number of total features in input
 		p.n = LyricsData.size();
@@ -42,7 +37,6 @@ public class ModelHelper {
 		//the feature nodes of the training set
 		p.x = convertTrainingSetToFeatureNodes(collections);
 		return p;
-		
 	}
 
 	/**
@@ -66,16 +60,13 @@ public class ModelHelper {
 	 */
 	public double[] createTargetValuesArray(List<SongCollection> collections) {
 		int sum = 0;
-		for(SongCollection collection : collections)
-		{
+		for (SongCollection collection : collections) {
 			sum += collection.size();
 		}
 		double[] arr = new double[sum];
 		int i = 0;
-		for(SongCollection collection : collections)
-		{
-			for(int j = 0; j < collection.size() ; j++, i++)
-			{
+		for (SongCollection collection : collections) {
+			for (int j = 0; j < collection.size(); j++, i++) {
 				arr[i] = collection.getGenre().getInt();
 			}
 		}
@@ -104,14 +95,12 @@ public class ModelHelper {
 	 */
 	public FeatureNode[][] convertTrainingSetToFeatureNodes(List<SongCollection> collections) {
 		int sum = 0;
-		for(SongCollection collection : collections)
-		{
+		for (SongCollection collection : collections) {
 			sum += collection.size();
 		}
 		FeatureNode[][] temp = new FeatureNode[sum][];
 		int row = 0;
-		for(SongCollection collection : collections)
-		{
+		for (SongCollection collection : collections) {
 			for (Song song : collection.songs) {
 				temp[row] = song.getFeatureNodes();
 				row++;

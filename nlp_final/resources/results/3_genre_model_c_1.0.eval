@@ -1,165 +1,267 @@
 Song Classifier - Evaluation File
 =================================
-Evaluated Genres:	METAL	POP	RAP
+Evaluated Genres:metal pop   rap   rock  blues 
 Cost of constraints violation:	1.0
-Number of songs to classify:	75
+Number of songs to classify:	125
 
-	METAL	POP	RAP	Expected	Prediction
-1.	95%	1%	2%		METAL	METAL
+song metal pop   rap   rock  blues 	Prediction	Expected Prediction	Song Name
+1.   71%   0%    0%    27%   0%    METAL       
 
-2.	97%	0%	2%		METAL	METAL
+2.   95%   0%    2%    1%    0%    METAL       
 
-3.	99%	0%	0%		METAL	METAL
+3.   64%   0%    0%    1%    33%   METAL       
 
-4.	99%	0%	0%		METAL	METAL
+4.   93%   0%    0%    5%    0%    METAL       
 
-5.	98%	0%	0%		METAL	METAL
+5.   86%   0%    0%    12%   0%    METAL       
 
-6.	98%	1%	0%		METAL	METAL
+6.   40%   0%    0%    59%   0%    ROCK        
 
-7.	98%	0%	1%		METAL	METAL
+7.   72%   0%    1%    26%   0%    METAL       
 
-8.	95%	0%	4%		METAL	METAL
+8.   85%   0%    2%    11%   0%    METAL       
 
-9.	55%	23%	21%		METAL	METAL
+9.   0%    1%    1%    62%   35%   ROCK        
 
-10.	99%	0%	0%		METAL	METAL
+10.  55%   0%    0%    43%   0%    METAL       
 
-11.	73%	3%	22%		METAL	METAL
+11.  61%   3%    16%   14%   4%    METAL       
 
-12.	85%	7%	7%		METAL	METAL
+12.  77%   12%   6%    3%    1%    METAL       
 
-13.	97%	1%	0%		METAL	METAL
+13.  94%   1%    0%    2%    0%    METAL       
 
-14.	90%	3%	5%		METAL	METAL
+14.  28%   0%    2%    64%   4%    ROCK        
 
-15.	97%	0%	1%		METAL	METAL
+15.  90%   0%    0%    8%    0%    METAL       
 
-16.	99%	0%	0%		METAL	METAL
+16.  93%   0%    0%    6%    0%    METAL       
 
-17.	99%	0%	0%		METAL	METAL
+17.  97%   0%    0%    1%    0%    METAL       
 
-18.	97%	1%	0%		METAL	METAL
+18.  90%   0%    0%    8%    0%    METAL       
 
-19.	97%	0%	1%		METAL	METAL
+19.  87%   0%    0%    10%   1%    METAL       
 
-20.	80%	14%	5%		METAL	METAL
+20.  65%   9%    3%    19%   1%    METAL       
 
-21.	30%	38%	31%		METAL	POP
+21.  25%   35%   24%   9%    5%    POP         
 
-22.	97%	0%	2%		METAL	METAL
+22.  96%   0%    1%    1%    0%    METAL       
 
-23.	93%	0%	5%		METAL	METAL
+23.  72%   0%    9%    17%   0%    METAL       
 
-24.	89%	2%	7%		METAL	METAL
+24.  67%   0%    5%    21%   3%    METAL       
 
-25.	84%	14%	1%		METAL	METAL
+25.  70%   7%    0%    16%   5%    METAL       
 
-26.	24%	63%	12%		POP	POP
+26.  8%    52%   7%    3%    27%   POP         
 
-27.	7%	86%	6%		POP	POP
+27.  2%    85%   9%    2%    0%    POP         
 
-28.	0%	71%	28%		POP	POP
+28.  0%    49%   0%    0%    50%   BLUES       
 
-29.	0%	78%	21%		POP	POP
+29.  0%    61%   15%   8%    14%   POP         
 
-30.	0%	49%	50%		POP	RAP
+30.  0%    49%   50%   0%    0%    RAP         
 
-31.	15%	83%	0%		POP	POP
+31.  0%    81%   0%    6%    12%   POP         
 
-32.	92%	6%	0%		POP	METAL
+32.  65%   30%   1%    2%    0%    METAL       
 
-33.	0%	62%	37%		POP	POP
+33.  0%    9%    1%    0%    88%   BLUES       
 
-34.	6%	1%	91%		POP	RAP
+34.  0%    9%    88%   2%    0%    RAP         
 
-35.	6%	89%	3%		POP	POP
+35.  0%    59%   1%    39%   0%    POP         
 
-36.	33%	62%	3%		POP	POP
+36.  12%   74%   9%    0%    3%    POP         
 
-37.	40%	59%	0%		POP	POP
+37.  0%    66%   0%    1%    31%   POP         
 
-38.	26%	0%	72%		POP	RAP
+38.  1%    1%    97%   0%    0%    RAP         
 
-39.	97%	2%	0%		POP	METAL
+39.  66%   3%    1%    29%   0%    METAL       
 
-40.	7%	42%	50%		POP	RAP
+40.  0%    44%   50%   2%    2%    RAP         
 
-41.	10%	88%	0%		POP	POP
+41.  0%    69%   0%    0%    30%   POP         
 
-42.	38%	30%	31%		POP	METAL
+42.  1%    22%   72%   3%    0%    RAP         
 
-43.	1%	68%	29%		POP	POP
+43.  0%    25%   18%   51%   4%    ROCK        
 
-44.	2%	93%	3%		POP	POP
+44.  1%    71%   1%    0%    25%   POP         
 
-45.	74%	16%	9%		POP	METAL
+45.  47%   13%   6%    29%   3%    METAL       
 
-46.	0%	50%	49%		POP	POP
+46.  0%    16%   49%   0%    33%   RAP         
 
-47.	0%	49%	50%		POP	RAP
+47.  0%    49%   49%   0%    0%    POP         
 
-48.	0%	99%	0%		POP	POP
+48.  0%    99%   0%    0%    0%    POP         
 
-49.	2%	97%	0%		POP	POP
+49.  0%    51%   0%    46%   1%    POP         
 
-50.	95%	4%	0%		POP	METAL
+50.  80%   0%    0%    11%   7%    METAL       
 
-51.	0%	54%	44%		RAP	POP
+51.  0%    51%   47%   0%    0%    POP         
 
-52.	0%	99%	0%		RAP	POP
+52.  0%    99%   0%    0%    0%    POP         
 
-53.	29%	63%	7%		RAP	POP
+53.  9%    87%   2%    0%    0%    POP         
 
-54.	0%	77%	22%		RAP	POP
+54.  0%    63%   36%   0%    0%    POP         
 
-55.	0%	9%	90%		RAP	RAP
+55.  0%    0%    2%    0%    97%   BLUES       
 
-56.	18%	27%	53%		RAP	RAP
+56.  0%    47%   51%   0%    0%    RAP         
 
-57.	97%	0%	2%		RAP	METAL
+57.  97%   0%    1%    0%    0%    METAL       
 
-58.	0%	70%	29%		RAP	POP
+58.  0%    65%   34%   0%    0%    POP         
 
-59.	0%	92%	7%		RAP	POP
+59.  0%    97%   2%    0%    0%    POP         
 
-60.	1%	84%	14%		RAP	POP
+60.  0%    70%   28%   0%    0%    POP         
 
-61.	0%	4%	95%		RAP	RAP
+61.  0%    0%    99%   0%    0%    RAP         
 
-62.	0%	9%	90%		RAP	RAP
+62.  0%    38%   58%   0%    3%    RAP         
 
-63.	0%	99%	0%		RAP	POP
+63.  0%    99%   0%    0%    0%    POP         
 
-64.	54%	0%	45%		RAP	METAL
+64.  2%    0%    70%   27%   0%    RAP         
 
-65.	0%	45%	54%		RAP	RAP
+65.  0%    35%   64%   0%    0%    RAP         
 
-66.	0%	98%	1%		RAP	POP
+66.  0%    97%   2%    0%    0%    POP         
 
-67.	0%	22%	77%		RAP	RAP
+67.  0%    7%    90%   0%    2%    RAP         
 
-68.	0%	0%	99%		RAP	RAP
+68.  0%    1%    98%   0%    0%    RAP         
 
-69.	95%	0%	4%		RAP	METAL
+69.  17%   9%    65%   6%    0%    RAP         
 
-70.	0%	11%	87%		RAP	RAP
+70.  0%    2%    97%   0%    0%    RAP         
 
-71.	0%	0%	99%		RAP	RAP
+71.  0%    1%    98%   0%    0%    RAP         
 
-72.	0%	0%	99%		RAP	RAP
+72.  0%    0%    92%   7%    0%    RAP         
 
-73.	3%	0%	96%		RAP	RAP
+73.  0%    0%    83%   16%   0%    RAP         
 
-74.	61%	0%	38%		RAP	METAL
+74.  3%    0%    95%   0%    0%    RAP         
 
-75.	85%	0%	14%		RAP	METAL
+75.  66%   0%    33%   0%    0%    METAL       
+
+76.  6%    0%    0%    92%   0%    ROCK        
+
+77.  74%   0%    0%    11%   14%   METAL       
+
+78.  10%   35%   22%   30%   0%    POP         
+
+79.  13%   11%   0%    74%   0%    ROCK        
+
+80.  70%   0%    0%    14%   13%   METAL       
+
+81.  0%    34%   1%    60%   3%    ROCK        
+
+82.  83%   0%    1%    15%   0%    METAL       
+
+83.  97%   0%    1%    0%    0%    METAL       
+
+84.  0%    0%    0%    99%   0%    ROCK        
+
+85.  10%   3%    41%   39%   6%    RAP         
+
+86.  0%    2%    0%    96%   0%    ROCK        
+
+87.  0%    0%    0%    36%   62%   BLUES       
+
+88.  7%    14%   15%   10%   52%   BLUES       
+
+89.  98%   0%    0%    1%    0%    METAL       
+
+90.  57%   6%    0%    35%   0%    METAL       
+
+91.  39%   2%    9%    38%   10%   METAL       
+
+92.  0%    0%    1%    40%   57%   BLUES       
+
+93.  19%   10%   0%    0%    68%   BLUES       
+
+94.  14%   8%    2%    28%   45%   BLUES       
+
+95.  2%    0%    7%    90%   0%    ROCK        
+
+96.  53%   0%    21%   23%   0%    METAL       
+
+97.  26%   0%    1%    61%   10%   ROCK        
+
+98.  23%   0%    0%    75%   0%    ROCK        
+
+99.  0%    0%    0%    41%   57%   BLUES       
+
+100. 35%   8%    18%   30%   6%    METAL       
+
+101. 0%    0%    0%    10%   89%   BLUES       
+
+102. 10%   6%    1%    1%    80%   BLUES       
+
+103. 1%    53%   0%    6%    37%   POP         
+
+104. 4%    0%    1%    2%    91%   BLUES       
+
+105. 4%    24%   0%    0%    70%   BLUES       
+
+106. 15%   0%    0%    1%    82%   BLUES       
+
+107. 0%    0%    0%    0%    99%   BLUES       
+
+108. 0%    0%    1%    6%    92%   BLUES       
+
+109. 0%    0%    0%    0%    99%   BLUES       
+
+110. 4%    36%   1%    16%   41%   BLUES       
+
+111. 0%    29%   0%    2%    66%   BLUES       
+
+112. 1%    1%    0%    89%   7%    ROCK        
+
+113. 1%    38%   0%    20%   39%   BLUES       
+
+114. 28%   1%    0%    0%    70%   BLUES       
+
+115. 2%    1%    1%    0%    93%   BLUES       
+
+116. 28%   6%    6%    0%    59%   BLUES       
+
+117. 0%    0%    0%    0%    99%   BLUES       
+
+118. 0%    0%    0%    0%    98%   BLUES       
+
+119. 0%    44%   0%    54%   0%    ROCK        
+
+120. 0%    0%    0%    2%    97%   BLUES       
+
+121. 0%    0%    33%   64%   1%    ROCK        
+
+122. 0%    0%    0%    68%   31%   ROCK        
+
+123. 0%    39%   0%    0%    60%   BLUES       
+
+124. 0%    1%    0%    71%   25%   ROCK        
+
+125. 0%    1%    2%    0%    96%   BLUES       
 
 
 Totals:
 ================================================
-Prediction results for METAL: 24 of 25 songs	-	96.0%
-Prediction results for POP: 15 of 25 songs	-	60.0%
-Prediction results for RAP: 11 of 25 songs	-	44.0%
-Total predicted 50 of 75 songs	-	66.67%
-Evaluation time: 0.43 seconds
+Prediction results for METAL: 21 of 25 songs	-	84.00%
+Prediction results for POP: 12 of 25 songs	-	48.00%
+Prediction results for RAP: 13 of 25 songs	-	52.00%
+Prediction results for ROCK: 8 of 25 songs	-	32.00%
+Prediction results for BLUES: 19 of 25 songs	-	76.00%
+Total predicted 73 of 125 songs	-	58.40%
+Evaluation time: 0.74 seconds

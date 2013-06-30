@@ -1,7 +1,6 @@
 package idc.nlp.entities;
 
 import java.util.List;
-import java.util.Locale;
 
 import idc.nlp.parsers.ParseMode;
 import idc.nlp.parsers.Parser;
