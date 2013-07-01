@@ -19,7 +19,6 @@ public class Evaluator {
 	final static long startTime = System.currentTimeMillis();
 
 	public static void main(String[] args) {
-		long startTime = System.currentTimeMillis();
 		SongClassifierModel model = new SongClassifierModel(costOfViolation);
 		model.train();
 		//SongClassifierModel.loadModelFromFile(modelFilename);
@@ -39,10 +38,21 @@ public class Evaluator {
 		str.append("=================================\n");
 		str.append("Evaluated Genres: ");
 		int totalSongs = 0;
+		int songNum = 1;
+		int[] successfulPrediction = new int[evaluations.size() + 1];
 		StringBuilder genresStringBuilder = new StringBuilder();
-		for (EvaluationModel evaluationModel : evaluations) {
-			genresStringBuilder.append(String.format("%-6s", evaluationModel.getGenre().toString().toLowerCase()));
-			totalSongs += evaluationModel.getResults().size();
+		StringBuilder songsDataStringBuilder = new StringBuilder();
+		for (EvaluationModel evaluation : evaluations) {
+			genresStringBuilder.append(String.format("%-6s", evaluation.getGenre().toString().toLowerCase()));
+			totalSongs += evaluation.getResults().size();
+			for (PredictionResult result : evaluation.getResults()) {
+				if (result.getGenreClassification().equals(evaluation.getGenre())) {
+					successfulPrediction[evaluation.getGenre().getInt()]++;
+				}
+				songsDataStringBuilder.append(String.format("%-5s", songNum++ + ".") + result.printConfidenceOnly());
+				songsDataStringBuilder.append(String.format("%-12s", result.getGenreClassification()));
+				songsDataStringBuilder.append("\n\n");
+			}
 		}
 		str.append(genresStringBuilder.toString());
 		str.append("\nCost of constraints violation:\t" + evaluations.get(0).getConstraints() + "\n");
@@ -53,30 +63,25 @@ public class Evaluator {
 		str.append("\tExpected Prediction\t");
 		str.append("Song Name");
 		str.append('\n');
-		int songNum = 1;
-		int[] successfulPrediction = new int[evaluations.size() + 1];
-		for (EvaluationModel evaluationModel : evaluations) {
-			for (PredictionResult result : evaluationModel.getResults()) {
-				if (result.getGenreClassification().equals(evaluationModel.getGenre())) {
-					successfulPrediction[evaluationModel.getGenre().getInt()]++;
-				}
-				str.append(String.format("%-5s", songNum++ + ".") + result.printConfidenceOnly());
-				str.append(String.format("%-12s", result.getGenreClassification()));
-				str.append("\n\n");
-			}
-		}
+		str.append(songsDataStringBuilder.toString());
 		str.append("\nTotals:\n");
 		str.append("================================================\n");
-		for (EvaluationModel evaluationModel : evaluations) {
-			int p = successfulPrediction[evaluationModel.getGenre().getInt()];
-			int t = evaluationModel.getResults().size();
-			str.append("Prediction results for " + evaluationModel.getGenre() + ": " + p + " of " + t + " songs\t");
+		StringBuilder confusionMatrixStringBuilder = new StringBuilder("\t\t" + genresStringBuilder.toString());
+		for (EvaluationModel evaluation : evaluations) {
+			int p = successfulPrediction[evaluation.getGenre().getInt()];
+			int t = evaluation.getResults().size();
+			str.append("Prediction results for " + evaluation.getGenre() + ": " + p + " of " + t + " songs\t");
 			str.append("-\t" + print2DecimalsAfterPoint((double) (1.0 * p / t) * 100) + "%\n");
+			confusionMatrixStringBuilder.append('\n').append(evaluation.getGenre().toString().toLowerCase())
+					.append(':').append('\t');
+			confusionMatrixStringBuilder.append(printArrayWithTabs(evaluation.getConfusionVector()));
+			confusionMatrixStringBuilder.append('\n');
 		}
 		int totalSuccessfulPredictions = arraySum(successfulPrediction);
 		str.append("Total predicted " + totalSuccessfulPredictions + " of " + totalSongs + " songs\t");
 		str.append("-\t" + print2DecimalsAfterPoint((double) (1.0 * totalSuccessfulPredictions / totalSongs) * 100)
 				+ "%\n\n");
+		str.append(confusionMatrixStringBuilder.toString() + "\n\n");
 		str.append("Evaluation time: " + print2DecimalsAfterPoint(getElapsedTimeInSeconds(startTime)) + " seconds");
 		FileUtil.writeStringToFile(
 				"resources/results/3_genre_model_c_" + evaluations.get(0).getConstraints() + ".eval", str.toString());
@@ -89,6 +94,14 @@ public class Evaluator {
 			sum += i;
 		}
 		return sum;
+	}
+
+	private static String printArrayWithTabs(int[] arr) {
+		String arrString = "";
+		for (int i : arr) {
+			arrString += String.format("%02d    ", i);
+		}
+		return arrString;
 	}
 
 	private static double getElapsedTimeInSeconds(long startTime) {

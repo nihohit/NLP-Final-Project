@@ -1,6 +1,6 @@
 Song Classifier - Evaluation File
 =================================
-Evaluated Genres:metal pop   rap   rock  blues 
+Evaluated Genres: metal pop   rap   rock  blues 
 Cost of constraints violation:	1.0
 Number of songs to classify:	125
 
@@ -264,4 +264,17 @@ Prediction results for RAP: 13 of 25 songs	-	52.00%
 Prediction results for ROCK: 8 of 25 songs	-	32.00%
 Prediction results for BLUES: 19 of 25 songs	-	76.00%
 Total predicted 73 of 125 songs	-	58.40%
-Evaluation time: 0.74 seconds
+
+		metal pop   rap   rock  blues 
+metal:	21    01    00    03    00    
+
+pop:	04    12    06    01    02    
+
+rap:	02    09    13    00    01    
+
+rock:	09    01    01    08    06    
+
+blues:	00    01    00    05    19    
+
+
+Evaluation time: 0.71 seconds

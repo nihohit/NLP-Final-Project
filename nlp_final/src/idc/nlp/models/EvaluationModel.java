@@ -1,6 +1,7 @@
 package idc.nlp.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import idc.nlp.entities.Genre;
@@ -8,7 +9,7 @@ import idc.nlp.entities.Song;
 import idc.nlp.entities.SongCollection;
 
 /**
- *
+ * 
  */
 public class EvaluationModel {
 
@@ -17,6 +18,7 @@ public class EvaluationModel {
 	private List<PredictionResult> results;
 	private SongClassifierModel model;
 	private String testSongsFilePath;
+	private int[] confusionVector;
 	
 	public EvaluationModel(double constrains, SongClassifierModel model, Genre genre, String testSongsFilePath) {
 		this.constraints = constrains;
@@ -28,9 +30,12 @@ public class EvaluationModel {
 	
 	private void evaluateData() {
 		SongCollection testFile = new SongCollection(testSongsFilePath);
+		confusionVector = new int[Genre.values().length + 1];
 		results = new ArrayList<PredictionResult>();
 		for (Song song : testFile.songs) {
-			results.add(model.predict(song.convertToFeatureNodes()));
+			PredictionResult result = model.predict(song.convertToFeatureNodes());
+			confusionVector[result.getPrediction()]++;
+			results.add(result);
 		}
 	}
 
@@ -54,6 +59,11 @@ public class EvaluationModel {
 	public double getConstraints() {
 		return constraints;
 	}
-	
-	
+
+	/**
+	 * @return the confusionVector
+	 */
+	public int[] getConfusionVector() {
+		return Arrays.copyOfRange(confusionVector, 1, confusionVector.length);
+	}
 }
