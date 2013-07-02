@@ -1,22 +1,26 @@
 package idc.nlp.entities;
 
+import idc.nlp.parsers.ParseMode;
 import idc.nlp.utils.CountMap;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import de.bwaldvogel.liblinear.FeatureNode;
 
 public class Song {
 
 	protected CountMap<String> lyricsCount;
+	private CountMap<String> generalLyricsCount;
 	protected FeatureNode[] featureNodes;
-	private List<String> lyrics;
-	public static int ADDITIONAL_FEATURES_AMOUNT = 0;
+	private List<List<String>> lyrics;
+	public static int ADDITIONAL_FEATURES_AMOUNT = 1;
 
-	public Song(CountMap<String> lyrics) {
-		this.lyricsCount = lyrics;
-		this.featureNodes = convertToFeatureNodes();
+	public Song(CountMap<String> lyricsCountMap, List<List<String>> lines) {
+		this.lyricsCount = lyricsCountMap;
+		this.lyrics = lines;
+		this.generalLyricsCount = generateLyricsCountList(this.lyrics);
 	}
 
 	public CountMap<String> getLyrics() {
@@ -58,7 +62,56 @@ public class Song {
 	private FeatureNode[] getAdditionalFeatures()
 	{
 		FeatureNode[] result = new FeatureNode[ADDITIONAL_FEATURES_AMOUNT];
-		
+		int totalLength = computeLength();
+		result[0] = new FeatureNode(LyricsData.size() + 1, computeAverageLineLength(totalLength));
+		//result[1] =  new FeatureNode(LyricsData.size() + 2, computeAverageWordAppearance(totalLength));
+		//result[2] =  new FeatureNode(LyricsData.size() + 3, computeAverageLineLength(totalLength));
+		//result[3] =  new FeatureNode(LyricsData.size() + 4, wordDiversity(totalLength));
 		return result;
+	}
+	
+	private int computeLength()
+	{
+		int length = 0;
+		for(List<String> line : lyrics)
+		{
+			length += line.size();
+		}
+		
+		return length;
+	}
+	
+	private double computeAverageLineLength(double totalLength)
+	{
+		return totalLength / lyrics.size();
+	}
+	
+	private double computeAverageWordAppearance(int length)
+	{
+		double variety = 0;
+		for(String word : generalLyricsCount.keySet())
+		{
+			variety += generalLyricsCount.get(word);
+		}
+		return variety / generalLyricsCount.size();
+	}
+	
+	private double wordDiversity(double totalWords)
+	{
+		return totalWords / generalLyricsCount.size();
+	}
+	
+	private static CountMap<String> generateLyricsCountList(List<List<String>> lyrics)
+	{
+		CountMap<String> lyricsCount = new CountMap<String>();
+		for(List<String> line : lyrics)
+		{
+			for(String word : line) {
+				if (idc.nlp.parsers.Parser.wordShouldNotBeIgnored(word)) {
+					lyricsCount.increment(word);
+				}
+			}
+		}
+		return lyricsCount;
 	}
 }

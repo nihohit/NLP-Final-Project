@@ -32,7 +32,7 @@ public class ModelHelper {
 		p.y = createTargetValuesArray(collections);
 
 		//the number of total features in input
-		p.n = LyricsData.size();
+		p.n = LyricsData.size() + Song.ADDITIONAL_FEATURES_AMOUNT;
 
 		//the feature nodes of the training set
 		p.x = convertTrainingSetToFeatureNodes(collections);
@@ -102,7 +102,7 @@ public class ModelHelper {
 		int row = 0;
 		for (SongCollection collection : collections) {
 			for (Song song : collection.songs) {
-				temp[row] = song.getFeatureNodes();
+				temp[row] = song.convertToFeatureNodes();;
 				row++;
 			}
 		}

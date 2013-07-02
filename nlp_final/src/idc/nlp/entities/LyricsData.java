@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LyricsData {
 
-	private static int counter = Song.ADDITIONAL_FEATURES_AMOUNT + 1;
+	private static int counter = 1;
 	
 	private static Map<String, Integer> WORD_TO_INT = new HashMap<String, Integer>();
 	private static Map<Integer, String> INT_TO_WORD = new HashMap<Integer, String>();
@@ -43,7 +43,7 @@ public class LyricsData {
 	 * @return the map size
 	 */
 	public static int size() {
-		return counter - 1 - Song.ADDITIONAL_FEATURES_AMOUNT;
+		return counter - 1;
 	}
 
 }

@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -59,6 +60,7 @@ public enum Parser {
 	public List<Song> parseSongsFile(String filename, ParseMode mode) {
 		List<Song> songs = new ArrayList<Song>();
 		CountMap<String> songLyrics = new CountMap<String>();
+		List<List<String>> lines = new LinkedList<List<String>>();
 		BufferedReader reader = FileUtil.getReader(filename);
 		String line;
 		int lineCounter = 0;
@@ -66,17 +68,19 @@ public enum Parser {
 			while ((line = reader.readLine()) != null) {
 				lineCounter++;
 				if (line.isEmpty()) {
-
 					// this means end of the current song
-					songs.add(new Song(songLyrics));
+					songs.add(new Song(songLyrics, lines));
 					songLyrics = null;
 					songLyrics = new CountMap<String>();
+					lines = new LinkedList<List<String>>();
 				}
 				else if (line.charAt(0) != '#') {
+					List<String> lineAsList = new LinkedList<String>();
 					StringTokenizer tokenizer = new StringTokenizer(line);
 					while (tokenizer.hasMoreTokens()) {
 						String word = tokenizer.nextToken();
 						word = word.toLowerCase();
+						lineAsList.add(word);
 						if (mode.equals(ParseMode.TRAIN) && wordShouldNotBeIgnored(word)) {
 							songLyrics.increment(word);
 							LyricsData.add(word);
@@ -85,13 +89,14 @@ public enum Parser {
 							songLyrics.increment(word);
 						}
 					}
+					lines.add(lineAsList);
 				}
 			}
 			reader.close();
 
 			//one last song
 			if (songLyrics.size() > 0) {
-				songs.add(new Song(songLyrics));
+				songs.add(new Song(songLyrics, lines));
 			}
 		}
 		catch (IOException e) {
@@ -108,7 +113,7 @@ public enum Parser {
 	 * @param word - to the word to check
 	 * @return true if the given word should not be ignored
 	 */
-	private boolean wordShouldNotBeIgnored(String word) {
+	public static boolean wordShouldNotBeIgnored(String word) {
 		return !ignoredSet.contains(word) && word.length() > 2;
 	}
 
