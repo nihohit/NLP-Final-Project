@@ -1,5 +1,7 @@
 package idc.nlp.entities;
 
+import idc.nlp.utils.CountMap;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +11,7 @@ public class LyricsData {
 	
 	private static Map<String, Integer> WORD_TO_INT = new HashMap<String, Integer>();
 	private static Map<Integer, String> INT_TO_WORD = new HashMap<Integer, String>();
+	private static CountMap<String> WORD_AMOUNT = new CountMap<String>();
 	
 	/**
 	 * adds the given word into the map, if not exists, and assigns an ID to it.
@@ -20,6 +23,7 @@ public class LyricsData {
 			INT_TO_WORD.put(counter, word);
 			counter++;
 		}
+		WORD_AMOUNT.increment(word);
 	}
 	
 	public static Integer getId(String word) {
@@ -45,5 +49,9 @@ public class LyricsData {
 	public static int size() {
 		return counter - 1;
 	}
-
+	
+	public static int wordAmount(String word)
+	{
+		return WORD_AMOUNT.get(word);
+	}
 }

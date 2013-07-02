@@ -63,7 +63,7 @@ public class Song {
 	{
 		FeatureNode[] result = new FeatureNode[ADDITIONAL_FEATURES_AMOUNT];
 		int totalLength = computeLength();
-		result[0] = new FeatureNode(LyricsData.size() + 1, computeAverageLineLength(totalLength));
+		//result[0] = new FeatureNode(LyricsData.size() + 1, averageLyricsOriginality());
 		//result[1] =  new FeatureNode(LyricsData.size() + 2, computeAverageWordAppearance(totalLength));
 		//result[2] =  new FeatureNode(LyricsData.size() + 3, computeAverageLineLength(totalLength));
 		//result[3] =  new FeatureNode(LyricsData.size() + 4, wordDiversity(totalLength));
@@ -86,7 +86,7 @@ public class Song {
 		return totalLength / lyrics.size();
 	}
 	
-	private double computeAverageWordAppearance(int length)
+	private double computeAverageWordAppearance()
 	{
 		double variety = 0;
 		for(String word : generalLyricsCount.keySet())
@@ -106,12 +106,22 @@ public class Song {
 		CountMap<String> lyricsCount = new CountMap<String>();
 		for(List<String> line : lyrics)
 		{
-			for(String word : line) {
-				if (idc.nlp.parsers.Parser.wordShouldNotBeIgnored(word)) {
-					lyricsCount.increment(word);
-				}
+			for(String word : line) 
+			{
+				lyricsCount.increment(word);
 			}
 		}
 		return lyricsCount;
+	}
+	
+	private double averageLyricsOriginality()
+	{
+		double result = 0.0;
+		for(String word : lyricsCount.keySet())
+		{
+			result += LyricsData.wordAmount(word);
+		}
+		
+		return result / lyricsCount.size();
 	}
 }
