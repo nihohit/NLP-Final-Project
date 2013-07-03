@@ -13,12 +13,14 @@ public class Song {
 	private CountMap<String> generalLyricsCount;
 	protected FeatureNode[] featureNodes;
 	private List<List<String>> lyrics;
-	public static int ADDITIONAL_FEATURES_AMOUNT = 4;
+	public static int ADDITIONAL_FEATURES_AMOUNT = 2;
+	private String name;
 
-	public Song(CountMap<String> lyricsCountMap, List<List<String>> lines) {
+	public Song(CountMap<String> lyricsCountMap, List<List<String>> lines, String name) {
 		this.lyricsCount = lyricsCountMap;
 		this.lyrics = lines;
 		this.generalLyricsCount = generateLyricsCountList(this.lyrics);
+		this.name = name;
 	}
 
 	public CountMap<String> getLyrics() {
@@ -55,16 +57,16 @@ public class Song {
 
 	@Override
 	public String toString() {
-		return this.getLyrics().toString();
+		return this.name;
 	}
 
 	private FeatureNode[] getAdditionalFeatures() {
 		FeatureNode[] result = new FeatureNode[ADDITIONAL_FEATURES_AMOUNT];
 		int totalLength = computeLength();
 		result[0] = new FeatureNode(LyricsData.size() + 1, averageLyricsOriginality());
-		result[1] = new FeatureNode(LyricsData.size() + 2, computeAverageWordAppearance());
-		result[2] =  new FeatureNode(LyricsData.size() + 3, computeAverageLineLength(totalLength));
-		result[3] =  new FeatureNode(LyricsData.size() + 4, wordDiversity(totalLength));
+		//result[2] = new FeatureNode(LyricsData.size() + 3, computeAverageWordAppearance());
+		result[1] =  new FeatureNode(LyricsData.size() + 2, computeAverageLineLength(totalLength));
+		//result[2] =  new FeatureNode(LyricsData.size() + 3, wordDiversity(totalLength));
 		return result;
 	}
 
@@ -103,7 +105,8 @@ public class Song {
 		return lyricsCount;
 	}
 
-	private double averageLyricsOriginality() {
+	private double averageLyricsOriginality() 
+	{
 		double result = 0.0;
 		for (String word : lyricsCount.keySet()) {
 			result += LyricsData.wordAmount(word);

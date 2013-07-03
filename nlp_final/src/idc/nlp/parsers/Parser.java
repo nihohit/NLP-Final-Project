@@ -59,6 +59,7 @@ public enum Parser {
 	 */
 	public List<Song> parseSongsFile(String filename, ParseMode mode) {
 		List<Song> songs = new ArrayList<Song>();
+		String name = "";
 		CountMap<String> songLyrics = new CountMap<String>();
 		List<List<String>> lines = new LinkedList<List<String>>();
 		BufferedReader reader = FileUtil.getReader(filename);
@@ -69,7 +70,7 @@ public enum Parser {
 				lineCounter++;
 				if (line.isEmpty()) {
 					// this means end of the current song
-					songs.add(new Song(songLyrics, lines));
+					songs.add(new Song(songLyrics, lines, name));
 					songLyrics = null;
 					songLyrics = new CountMap<String>();
 					lines = new LinkedList<List<String>>();
@@ -81,7 +82,7 @@ public enum Parser {
 						String word = tokenizer.nextToken();
 						word = word.toLowerCase();
 						lineAsList.add(word);
-						if (mode.equals(ParseMode.TRAIN) && wordShouldNotBeIgnored(word)) {
+						if (mode.equals(ParseMode.TRAIN)) {
 							songLyrics.increment(word);
 							LyricsData.add(word);
 						}
@@ -91,12 +92,17 @@ public enum Parser {
 					}
 					lines.add(lineAsList);
 				}
+				else
+				{
+					String shortLine = line.substring(2);
+					name = shortLine.substring(shortLine.indexOf(' ') + 1);
+				}
 			}
 			reader.close();
 
 			//one last song
 			if (songLyrics.size() > 0) {
-				songs.add(new Song(songLyrics, lines));
+				songs.add(new Song(songLyrics, lines, name));
 			}
 		}
 		catch (IOException e) {

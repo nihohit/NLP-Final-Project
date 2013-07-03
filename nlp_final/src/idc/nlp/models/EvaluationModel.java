@@ -33,7 +33,7 @@ public class EvaluationModel {
 		confusionVector = new int[Genre.values().length + 1];
 		results = new ArrayList<PredictionResult>();
 		for (Song song : testFile.songs) {
-			PredictionResult result = model.predict(song.convertToFeatureNodes());
+			PredictionResult result = model.predict(song.convertToFeatureNodes(), song.toString(), this.genre);
 			confusionVector[result.getPrediction()]++;
 			results.add(result);
 		}

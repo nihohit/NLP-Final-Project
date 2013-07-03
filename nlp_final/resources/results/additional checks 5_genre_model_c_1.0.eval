@@ -1,0 +1,280 @@
+Song Classifier - Evaluation File
+=================================
+Evaluated Genres: metal pop   rap   rock  blues 
+Cost of constraints violation:	1.0
+Number of songs to classify:	125
+
+song metal pop   rap   rock  blues Prediction Expected Song Name
+1.   57%   1%    0%    33%   7%    METAL      METAL    Annihilator Murder
+
+2.   80%   0%    12%   5%    0%    METAL      METAL    Annihilator Knight Jumps Queen
+
+3.   90%   0%    0%    1%    7%    METAL      METAL    Meduza Touch The Sky
+
+4.   80%   0%    0%    6%    12%   METAL      METAL    Meduza Hounds Of Hell
+
+5.   77%   0%    0%    17%   3%    METAL      METAL    Cans Silent Cries
+
+6.   59%   1%    0%    37%   1%    METAL      METAL    Cans Dreams
+
+7.   65%   0%    3%    30%   0%    METAL      METAL    Cryonic Temple The Story Of The Sword
+
+8.   70%   2%    0%    17%   8%    METAL      METAL    Cryonic Temple Steel Against Steel
+
+9.   4%    5%    0%    40%   49%   BLUES      METAL    At Vance My Bleeding Heart
+
+10.  77%   0%    0%    8%    13%   METAL      METAL    At Vance Falling
+
+11.  48%   1%    0%    30%   18%   METAL      METAL    Place Of Skulls The Watchers
+
+12.  58%   5%    1%    24%   10%   METAL      METAL    Place Of Skulls The Monster
+
+13.  68%   6%    0%    20%   4%    METAL      METAL    Place Of Skulls The Maker
+
+14.  55%   0%    0%    16%   27%   METAL      METAL    Down Lies I Don't Know What They Say But
+
+15.  87%   0%    0%    10%   1%    METAL      METAL    Candlemass Bearer Of Pain
+
+16.  73%   0%    5%    21%   0%    METAL      METAL    Candlemass Clearsight
+
+17.  86%   0%    8%    4%    0%    METAL      METAL    Count Raven Masters Of All Evil
+
+18.  90%   5%    2%    1%    0%    METAL      METAL    Count Raven Angel Of Death
+
+19.  73%   0%    2%    22%   2%    METAL      METAL    Count Raven Magic Is
+
+20.  68%   1%    0%    17%   11%   METAL      METAL    Darzamat From The Earth To The Stars
+
+21.  41%   6%    0%    14%   38%   METAL      METAL    Darzamat Into The Abyss Of Forgotten Woods
+
+22.  89%   1%    2%    3%    3%    METAL      METAL    Deinonychus A Throne On My Long - Awaited Desires
+
+23.  69%   0%    0%    29%   0%    METAL      METAL    Deinonychus Here Lies My Kingdom
+
+24.  65%   0%    0%    10%   23%   METAL      METAL    Deinonychus Inspiring Vulnerable Thought 
+
+25.  62%   3%    0%    13%   20%   METAL      METAL    Deinonychus Tears Will Flow
+
+26.  10%   32%   0%    1%    55%   BLUES      POP      THE BEATLES - YESTERDAY 
+
+27.  2%    50%   2%    15%   29%   POP        POP      MADONNA - LIKE A VIRGIN 
+
+28.  0%    61%   0%    0%    37%   POP        POP      ARETHA FRANKLIN - RESPECT 
+
+29.  0%    53%   0%    35%   10%   POP        POP      BACKSTREET BOYS - I WANT IT THAT WAY 
+
+30.  0%    95%   3%    0%    1%    POP        POP      THE ROLLING STONES - I CANT GET NO SATISFACTION 
+
+31.  0%    61%   0%    6%    31%   POP        POP      THE BEATLES - I WANT TO HOLD YOUR HAND 
+
+32.  47%   4%    0%    43%   3%    METAL      POP      U2 - WITH OR WITHOUT YOU 
+
+33.  0%    58%   0%    0%    40%   POP        POP      JACKSON 5 - I WANT YOU BACK 
+
+34.  0%    5%    57%   36%   0%    RAP        POP      MICHEAL JACKSON - BILLIE JEAN 
+
+35.  0%    34%   0%    60%   4%    ROCK       POP      NIRVANA - SMELLS LIKE TEEN SPIRIT   
+
+36.  15%   43%   0%    7%    33%   POP        POP      WONDER STEVIE - SUPERSTITION 
+
+37.  0%    77%   0%    19%   2%    POP        POP      GUNS N ROSES - SWEET CHILD O MINE 
+
+38.  6%    10%   78%   1%    1%    RAP        POP      MADONNA - VOGUE 
+
+39.  63%   7%    17%   10%   1%    METAL      POP      THE EAGLES - HOTEL CALIFORNIA 
+
+40.  0%    71%   0%    14%   14%   POP        POP      R E M  - LOSING MY RELIGION 
+
+41.  0%    39%   1%    0%    59%   BLUES      POP      THE SUPREMES - WHERE DID OUR LOVE GO 
+
+42.  1%    3%    59%   7%    28%   RAP        POP      BOB DYLAN - LIKE A ROLLING STONE 
+
+43.  0%    13%   0%    42%   42%   BLUES      POP      THE ROLLING STONES - BROWN SUGAR 
+
+44.  10%   56%   0%    1%    30%   POP        POP      SINEAD OCONNOR - NOTHING COMPARES 2 U 
+
+45.  44%   23%   0%    11%   19%   METAL      POP      JOHN LENNON - IMAGINE 
+
+46.  0%    39%   59%   0%    1%    RAP        POP      MICHAEL JACKSON - BEAT IT 
+
+47.  0%    97%   0%    0%    1%    POP        POP      LADY GAGA - POKERFACE 
+
+48.  0%    72%   27%   0%    0%    POP        POP      Madonna - Give me all your luvin
+
+49.  0%    8%    0%    77%   13%   ROCK       POP      Anastacia Cowboys Kisses
+
+50.  11%   7%    0%    64%   17%   ROCK       POP      Cher Emotional Fire
+
+51.  0%    48%   50%   0%    0%    RAP        RAP      MACKLEMORE & RYAN LEWIS   CANT HOLD US 
+
+52.  0%    91%   7%    0%    0%    POP        RAP      ROBIN THICKE   BLURRED LINES 
+
+53.  0%    49%   49%   0%    0%    POP        RAP      MACKLEMORE & RYAN LEWIS   THRIFT SHOP 
+
+54.  0%    89%   0%    0%    9%    POP        RAP      MARIAH CAREY   #BEAUTIFUL 
+
+55.  0%    62%   36%   0%    0%    POP        RAP      J COLE   POWER TRIP 
+
+56.  10%   0%    89%   0%    0%    RAP        RAP      DRAKE   STARTED FROM THE BOTTOM 
+
+57.  64%   20%   0%    0%    13%   METAL      RAP      EMELI SANDé   NEXT TO ME 
+
+58.  0%    63%   34%   0%    1%    POP        RAP      JUSTIN TIMBERLAKE   SUIT & TIE 
+
+59.  0%    80%   19%   0%    0%    POP        RAP      LIL WAYNE   LOVE ME 
+
+60.  0%    96%   0%    0%    2%    POP        RAP      CHRIS BROWN   FINE CHINA 
+
+61.  0%    63%   36%   0%    0%    POP        RAP      WALE   BAD SINGLE 
+
+62.  0%    1%    94%   0%    4%    RAP        RAP      ROCKO   UOENO FEAT RICK ROSS FUTURE PROD BY CHILDISH MAJOR 
+
+63.  0%    32%   67%   0%    0%    RAP        RAP      KENDRICK LAMAR   BITCH DON’T KILL MY VIBE 
+
+64.  0%    0%    85%   12%   0%    RAP        RAP      ACE HOOD   BUGATTI 
+
+65.  0%    33%   60%   0%    5%    RAP        RAP      LIL WAYNE   RICH AS FUCK 
+
+66.  0%    82%   16%   0%    1%    POP        RAP      CIARA   BODY PARTY 
+
+67.  0%    35%   60%   0%    3%    RAP        RAP      DJ KHALED   NO NEW FRIENDS 
+
+68.  0%    0%    99%   0%    0%    RAP        RAP      A$AP ROCKY   FUCKIN PROBLEMS 
+
+69.  0%    42%   55%   1%    0%    RAP        RAP      2 CHAINZ  WE OWN IT FAST & FURIOUS 
+
+70.  0%    14%   84%   0%    0%    RAP        RAP      NICKI MINAJ   HIGH SCHOOL SINGLE 
+
+71.  0%    0%    99%   0%    0%    RAP        RAP      Soulja Slim Im A Fool
+
+72.  2%    0%    95%   1%    0%    RAP        RAP      Dj Quik Murda 1 Case 
+
+73.  0%    0%    58%   29%   11%   RAP        RAP      Ant Banks U Just A Punk
+
+74.  22%   0%    40%   32%   4%    RAP        RAP      Eazy e Down To Tha Last Roach
+
+75.  23%   0%    73%   2%    0%    RAP        RAP      C Bo No Pain No Gain
+
+76.  0%    6%    0%    91%   0%    ROCK       ROCK     Pearl Jam Breath 
+
+77.  43%   0%    0%    16%   38%   METAL      ROCK     Stone Temple Pilots Black Again
+
+78.  10%   4%    0%    58%   25%   ROCK       ROCK     Soundgarden Drawing Flies
+
+79.  1%    2%    1%    86%   7%    ROCK       ROCK     Smashing Pumpkins The Celestials
+
+80.  22%   0%    0%    53%   22%   ROCK       ROCK     Bruce Springsteen Born In The U S A
+
+81.  0%    0%    2%    94%   3%    ROCK       ROCK     Aerosmith Love Three Times A Day
+
+82.  65%   0%    2%    30%   1%    METAL      ROCK     Arctic Monkeys Balaclava 
+
+83.  79%   0%    9%    9%    1%    METAL      ROCK     Clash coca cola
+
+84.  52%   0%    0%    37%   8%    METAL      ROCK     Dire Straits Angel Of Mercy 
+
+85.  9%    0%    0%    67%   21%   ROCK       ROCK     Doors Cars Hiss By My Window
+
+86.  1%    0%    6%    73%   18%   ROCK       ROCK     Billy Joel An Innocent Man
+
+87.  4%    0%    0%    8%    87%   BLUES      ROCK     Donnie Iris Daddy Don't Live Here Anymore
+
+88.  10%   1%    0%    25%   62%   BLUES      ROCK     Eddie Cochran I'm Alone Because I Love You
+
+89.  56%   0%    16%   26%   0%    METAL      ROCK     Julian Cope Autogeddon Blues
+
+90.  34%   5%    0%    54%   6%    ROCK       ROCK     South Sight Of Me
+
+91.  27%   0%    0%    45%   25%   ROCK       ROCK     South Motiveless Crime
+
+92.  0%    0%    0%    49%   49%   ROCK       ROCK     Verve Beautiful Mind
+
+93.  3%    25%   0%    4%    65%   BLUES      ROCK     Verve Drive You Home
+
+94.  14%   3%    0%    28%   53%   BLUES      ROCK     The Afghan Wigs This Is My Confession
+
+95.  6%    0%    2%    81%   9%    ROCK       ROCK     Boy Sets Fire Dear George
+
+96.  8%    0%    0%    88%   1%    ROCK       ROCK     Kasabian Lsf
+
+97.  17%   2%    0%    20%   59%   BLUES      ROCK     Sonic Youth Brother James
+
+98.  59%   0%    0%    27%   12%   METAL      ROCK     Strokes Ize Of The World
+
+99.  0%    0%    0%    46%   52%   BLUES      ROCK     Wilco Don't You Honey Me
+
+100. 2%    0%    0%    54%   41%   ROCK       ROCK     Yeah Yeah Yeahs Date With The Night
+
+101. 0%    0%    0%    51%   47%   ROCK       BLUES    Billie Holiday Please Don't Talk About Me When I'm Gone 
+
+102. 37%   1%    0%    5%    55%   BLUES      BLUES    Bessie Smith A Good Man Is Hard To Find 
+
+103. 0%    45%   0%    7%    46%   BLUES      BLUES    Memphis Minnie I Hate To See The Sun Go Down
+
+104. 1%    1%    0%    19%   76%   BLUES      BLUES    Bukka White Good Gin Blues
+
+105. 7%    7%    0%    2%    82%   BLUES      BLUES    John Lee Hooker Country Boy
+
+106. 29%   0%    4%    11%   54%   BLUES      BLUES    Mississippi John Hurt Casey Jones
+
+107. 0%    0%    26%   0%    73%   BLUES      BLUES    Muddy Waters Caldonia
+
+108. 0%    0%    0%    13%   86%   BLUES      BLUES    Tampa Red Got To Leave My Woman
+
+109. 0%    0%    0%    1%    97%   BLUES      BLUES    Tommy Mcclennan Baby Please Don't Tell On Me 
+
+110. 3%    2%    0%    26%   68%   BLUES      BLUES    Hot Tuna I Know You Rider
+
+111. 4%    10%   0%    9%    75%   BLUES      BLUES    Maria Muldaur Long Hard Climb
+
+112. 1%    0%    3%    60%   34%   ROCK       BLUES    Chris Smither Get A Better One 
+
+113. 6%    53%   1%    10%   28%   POP        BLUES    Chris Smither Hey Hey Hey
+
+114. 85%   0%    1%    0%    12%   METAL      BLUES    Blind Willie McTell Southern Can Is Mine
+
+115. 0%    1%    0%    1%    95%   BLUES      BLUES    Louis Jordan Buzz Me
+
+116. 23%   0%    0%    10%   65%   BLUES      BLUES    Slim Harpo Buzz Me Babe
+
+117. 0%    0%    0%    0%    98%   BLUES      BLUES    Sonny Boy Williamson Hoodoo Hoodoo
+
+118. 1%    0%    0%    15%   82%   BLUES      BLUES    Robben Ford Don't Let The Sun Catch You Crying
+
+119. 1%    26%   4%    62%   4%    ROCK       BLUES    Robert Cray Does It Really Matter
+
+120. 0%    0%    1%    27%   68%   BLUES      BLUES    Charley Patton Mississippi Bo Weavil Blues
+
+121. 0%    0%    0%    35%   64%   BLUES      BLUES    Robert Cray A Memo
+
+122. 0%    1%    0%    67%   30%   ROCK       BLUES    Dorothy Moore Funny How Time Slips Away 
+
+123. 0%    60%   0%    0%    39%   POP        BLUES    Skip James Careless Love
+
+124. 0%    1%    0%    50%   48%   ROCK       BLUES    Esther Phillips I Really Don't Want To Know
+
+125. 0%    2%    0%    2%    94%   BLUES      BLUES    Peetie Wheatstraw Cocktail Man Blues
+
+
+Totals:
+================================================
+Prediction results for METAL: 24 of 25 songs	-	96.00%
+Prediction results for POP: 12 of 25 songs	-	48.00%
+Prediction results for RAP: 15 of 25 songs	-	60.00%
+Prediction results for ROCK: 13 of 25 songs	-	52.00%
+Prediction results for BLUES: 17 of 25 songs	-	68.00%
+Total predicted 81 of 125 songs	-	64.80%
+
+		metal pop   rap   rock  blues 
+metal:	24    00    00    00    01    
+
+pop:	03    12    04    03    03    
+
+rap:	01    09    15    00    00    
+
+rock:	06    00    00    13    06    
+
+blues:	01    02    00    05    17    
+
+
+Evaluation time: 0.55 seconds

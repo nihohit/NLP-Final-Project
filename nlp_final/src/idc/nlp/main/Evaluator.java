@@ -50,7 +50,9 @@ public class Evaluator {
 					successfulPrediction[evaluation.getGenre().getInt()]++;
 				}
 				songsDataStringBuilder.append(String.format("%-5s", songNum++ + ".") + result.printConfidenceOnly());
-				songsDataStringBuilder.append(String.format("%-12s", result.getGenreClassification()));
+				songsDataStringBuilder.append(String.format("%-11s", result.getGenreClassification()));
+				songsDataStringBuilder.append(String.format("%-9s", result.getSongGenre()));
+				songsDataStringBuilder.append(result.getSongName());
 				songsDataStringBuilder.append("\n\n");
 			}
 		}
@@ -59,8 +61,8 @@ public class Evaluator {
 		str.append("Number of songs to classify:\t" + totalSongs + "\n\n");
 		str.append(String.format("%-5s", "song"));
 		str.append(genresStringBuilder.toString());
-		str.append("\tPrediction");
-		str.append("\tExpected Prediction\t");
+		str.append("Prediction ");
+		str.append("Expected ");
 		str.append("Song Name");
 		str.append('\n');
 		str.append(songsDataStringBuilder.toString());
@@ -84,7 +86,7 @@ public class Evaluator {
 		str.append(confusionMatrixStringBuilder.toString() + "\n\n");
 		str.append("Evaluation time: " + print2DecimalsAfterPoint(getElapsedTimeInSeconds(startTime)) + " seconds");
 		FileUtil.writeStringToFile(
-				"resources/results/3_genre_model_c_" + evaluations.get(0).getConstraints() + ".eval", str.toString());
+				"resources/results/5_genre_model_c_" + evaluations.get(0).getConstraints() + ".eval", str.toString());
 
 	}
 

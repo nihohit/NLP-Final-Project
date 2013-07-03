@@ -82,10 +82,10 @@ public class SongClassifierModel {
 	 * @param instanceToTest - the song to be classified as a feature nodes
 	 * @return a result of the prediction with probabilities.
 	 */
-	public PredictionResult predict(FeatureNode[] instanceToTest) {
+	public PredictionResult predict(FeatureNode[] instanceToTest, String name, Genre genre) {
 		double[] probabilityResults = new double[Genre.values().length];
 		double prediction = Linear.predictProbability(model, instanceToTest, probabilityResults);
-		return new PredictionResult(prediction, probabilityResults);
+		return new PredictionResult(prediction, probabilityResults, name, genre);
 	}
 
 }

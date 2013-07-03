@@ -10,10 +10,14 @@ public class PredictionResult {
 
 	private int prediction;
 	private double[] probabilityConfidense;
+	private String songName;
+	private Genre songGenre;
 
-	public PredictionResult(double prediction, double[] probabilityConfidense) {
+	public PredictionResult(double prediction, double[] probabilityConfidense, String name, Genre genre) {
 		this.prediction = (int) prediction;
 		this.probabilityConfidense = probabilityConfidense;
+		this.songGenre = genre;
+		this.songName = name;
 	}
 
 	public int[] normalizeDoubleResults(double[] results) {
@@ -34,6 +38,14 @@ public class PredictionResult {
 
 	public double[] getProbabilityConfidense() {
 		return probabilityConfidense;
+	}
+
+	public String getSongName() {
+		return songName;
+	}
+
+	public Genre getSongGenre() {
+		return songGenre;
 	}
 
 	public void setProbabilityConfidense(double[] probabilityConfidense) {
