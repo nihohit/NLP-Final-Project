@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import idc.nlp.entities.Genre;
+import idc.nlp.entities.Song;
 import idc.nlp.entities.SongCollection;
 import idc.nlp.models.EvaluationModel;
 import idc.nlp.models.PredictionResult;
@@ -15,10 +16,10 @@ import idc.nlp.utils.FileUtil;
  */
 public class Evaluator {
 
-	final static double costOfViolation = Trainer.constraints;
 	final static long startTime = System.currentTimeMillis();
 
 	public static void main(String[] args) {
+		double costOfViolation = Trainer.constraints;
 		SongClassifierModel model = new SongClassifierModel(costOfViolation);
 		model.train();
 		//SongClassifierModel.loadModelFromFile(modelFilename);
@@ -73,7 +74,7 @@ public class Evaluator {
 			int p = successfulPrediction[evaluation.getGenre().getInt()];
 			int t = evaluation.getResults().size();
 			str.append("Prediction results for " + evaluation.getGenre() + ": " + p + " of " + t + " songs\t");
-			str.append("-\t" + print2DecimalsAfterPoint((double) (1.0 * p / t) * 100) + "%\n");
+			str.append(print2DecimalsAfterPoint((double) (1.0 * p / t) * 100) + "%\n");
 			confusionMatrixStringBuilder.append('\n').append(evaluation.getGenre().toString().toLowerCase())
 					.append(':').append('\t');
 			confusionMatrixStringBuilder.append(printArrayWithTabs(evaluation.getConfusionVector()));
@@ -81,12 +82,12 @@ public class Evaluator {
 		}
 		int totalSuccessfulPredictions = arraySum(successfulPrediction);
 		str.append("Total predicted " + totalSuccessfulPredictions + " of " + totalSongs + " songs\t");
-		str.append("-\t" + print2DecimalsAfterPoint((double) (1.0 * totalSuccessfulPredictions / totalSongs) * 100)
+		str.append(print2DecimalsAfterPoint((double) (1.0 * totalSuccessfulPredictions / totalSongs) * 100)
 				+ "%\n\n");
 		str.append(confusionMatrixStringBuilder.toString() + "\n\n");
 		str.append("Evaluation time: " + print2DecimalsAfterPoint(getElapsedTimeInSeconds(startTime)) + " seconds");
 		FileUtil.writeStringToFile(
-				"resources/results/5_genre_model_c_" + evaluations.get(0).getConstraints() + ".eval", str.toString());
+				"resources/results/5_genre_model_c_" + evaluations.get(0).getConstraints() + "_a_" + Song.ADDITIONAL_FEATURES_AMOUNT +".eval", str.toString());
 
 	}
 

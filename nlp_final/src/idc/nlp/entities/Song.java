@@ -13,7 +13,7 @@ public class Song {
 	private CountMap<String> generalLyricsCount;
 	protected FeatureNode[] featureNodes;
 	private List<List<String>> lyrics;
-	public static int ADDITIONAL_FEATURES_AMOUNT = 2;
+	public static int ADDITIONAL_FEATURES_AMOUNT = 0;
 	private String name;
 
 	public Song(CountMap<String> lyricsCountMap, List<List<String>> lines, String name) {
@@ -63,10 +63,10 @@ public class Song {
 	private FeatureNode[] getAdditionalFeatures() {
 		FeatureNode[] result = new FeatureNode[ADDITIONAL_FEATURES_AMOUNT];
 		int totalLength = computeLength();
-		result[0] = new FeatureNode(LyricsData.size() + 1, averageLyricsOriginality());
+		//result[0] = new FeatureNode(LyricsData.size() + 1, averageLyricsOriginality());
 		//result[2] = new FeatureNode(LyricsData.size() + 3, computeAverageWordAppearance());
-		result[1] =  new FeatureNode(LyricsData.size() + 2, computeAverageLineLength(totalLength));
-		//result[2] =  new FeatureNode(LyricsData.size() + 3, wordDiversity(totalLength));
+		//result[1] =  new FeatureNode(LyricsData.size() + 2, computeAverageLineLength(totalLength));
+		//result[3] =  new FeatureNode(LyricsData.size() + 4, wordDiversity(totalLength));
 		return result;
 	}
 
