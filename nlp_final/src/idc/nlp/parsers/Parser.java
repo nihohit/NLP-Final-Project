@@ -8,10 +8,8 @@ import idc.nlp.utils.FileUtil;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
@@ -20,25 +18,6 @@ import java.util.StringTokenizer;
 public enum Parser {
 
 	PARSER;
-	
-	private static Set<String> ignoredSet;
-
-	static {
-		ignoredSet = new HashSet<String>();
-		BufferedReader reader = FileUtil.getReader("resources/data/ignore_words.dat");
-		String line;
-		try {
-			while ((line = reader.readLine()) != null) {
-				StringTokenizer tokenizer = new StringTokenizer(line, ",");
-				while (tokenizer.hasMoreTokens()) {
-					ignoredSet.add(tokenizer.nextToken());
-				}
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * parses a file in the following form:<br>
@@ -109,18 +88,6 @@ public enum Parser {
 			handleError(e, lineCounter);
 		}
 		return songs;
-	}
-
-	/**
-	 * validates the word's contribution to the training set.<br>
-	 * it checks whether the word is not belongs to the ignored words list,<br>
-	 * and that the word's length is greater than 2<br>
-	 * (the assumption is that a word less than 3 is considered as noise)
-	 * @param word - to the word to check
-	 * @return true if the given word should not be ignored
-	 */
-	public static boolean wordShouldNotBeIgnored(String word) {
-		return !ignoredSet.contains(word) && word.length() > 2;
 	}
 
 	/**
